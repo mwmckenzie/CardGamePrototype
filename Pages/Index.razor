@@ -1,0 +1,101 @@
+﻿@page "/"
+@using CaptrsCardGamePrototype.Models
+@using CaptrsCardGamePrototype.Services
+
+@inject CardDataService _cardDataService
+@inject TextContentBuilder _textContentBuilder
+@inject HttpClient _http
+
+
+<PageTitle>Index</PageTitle>
+
+<MudCarousel Class="mud-width-full my-2" 
+             Style="height:85vh;"
+             ShowArrows="@arrows" 
+             ShowBullets="@bullets"
+             EnableSwipeGesture="@enableSwipeGesture"
+             AutoCycle="@autocycle" 
+             TData="object">
+    
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <div class="d-flex my-2" style="height:100%">
+            <CardBase textSections="@textSections01" cardBase="@cardBase"/>
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+        <div class="d-flex my-2" style="height:100%">
+            <CardBase textSections="@textSections02" cardBase="@cardBase"/>
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition">
+        <div class="d-flex my-2" style="height:100%">
+            <CardBase textSections="@textSections03" cardBase="@cardBase"/>
+        </div>
+    </MudCarouselItem>
+</MudCarousel>
+
+<MudSelect @bind-Value="transition" Label="Transition" Class="ma-2">
+    <MudSelectItem Value="@Transition.Fade">Fade</MudSelectItem>
+    <MudSelectItem Value="@Transition.Slide">Slide</MudSelectItem>
+    <MudSelectItem Value="@Transition.None">None</MudSelectItem>
+</MudSelect>
+<MudSwitch @bind-Checked="@arrows" Color="Color.Primary">Show Arrows</MudSwitch>
+<MudSwitch @bind-Checked="@bullets" Color="Color.Primary">Show Bullets</MudSwitch>
+<MudSwitch @bind-Checked="@enableSwipeGesture" Color="Color.Primary">Enable Swap Gesture</MudSwitch>
+<MudSwitch @bind-Checked="@autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</MudSwitch>
+
+
+@code {
+
+    [Parameter]
+    public CardBaseObj? cardBase { get; set; } = new();
+    
+    [Parameter]
+    public string? objTitle { get; set; }
+    
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+
+    private List<string> textSections01 { get; set; } = new();
+    private List<string> textSections02 { get; set; } = new();
+    private List<string> textSections03 { get; set; } = new();
+
+    protected override async Task OnInitializedAsync() {
+        await base.OnInitializedAsync();
+        await _cardDataService.Init(_http);
+
+        _textContentBuilder.textLookUps = _cardDataService.textSectionLookUps;
+        _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_01");
+        //textSections01.Add(_textContentBuilder.textLookUps.lookUpDictName);
+
+        foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
+            //textSections.Add(loadedTextSection);
+            textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
+        }
+        
+        _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_04");
+        //textSections02.Add(_textContentBuilder.textLookUps.lookUpDictName);
+        foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
+            textSections02.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
+        }
+        
+        _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_03");
+        //textSections03.Add(_textContentBuilder.textLookUps.lookUpDictName);
+        foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
+            textSections03.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
+        }
+        
+        cardBase = new CardBaseObj() {
+            isValid = true,
+            name = "Sample Card",
+            cardType = "Prototype",
+        };
+    }
+
+
+    
+
+}

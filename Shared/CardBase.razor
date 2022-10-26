@@ -1,0 +1,57 @@
+@using CaptrsCardGamePrototype.Models
+@using System.Text.Encodings.Web
+
+@if (cardBase != null && cardBase.isValid) {
+    
+    <MudContainer MaxWidth="MaxWidth.ExtraSmall">
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderAvatar>
+                    <MudAvatar Color="Color.Secondary">
+                        <MudIcon Icon="@cardBase.icon"/>
+                    </MudAvatar>
+                </CardHeaderAvatar>
+                <CardHeaderContent>
+                    <BaseInfo objTitle="@cardBase.cardType" baseInfoObj="@cardBase"/>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default"/>
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudPaper Height="400px" Class="pa-2">
+                    @if (textSections != null) {
+                        foreach (var textSection in textSections) {
+                            <MudText Class="pa-4" Typo="Typo.body1">
+                                @((MarkupString)textSection)
+                            </MudText>
+                        }
+                    }
+                </MudPaper>
+            </MudCardContent>
+            <MudCardActions>
+                <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+            </MudCardActions>
+            
+            
+                
+        </MudCard>
+    </MudContainer>
+    
+}
+
+
+
+@code {
+    
+    [Parameter]
+    public CardBaseObj? cardBase { get; set; }
+    
+    [Parameter]
+    public string? objTitle { get; set; }
+    
+    [Parameter]
+    public List<string>? textSections { get; set; }
+    
+}

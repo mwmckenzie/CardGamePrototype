@@ -1,0 +1,63 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = CaptrsCardGamePrototype
+build_property.RootNamespace = CaptrsCardGamePrototype
+build_property.ProjectDir = D:\CSharp\CaptrsCardGamePrototype\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\CSharp\CaptrsCardGamePrototype
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/CSharp/CaptrsCardGamePrototype/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/BaseInfo.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEJhc2VJbmZvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/CardBase.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRCYXNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/CardContentReport.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRDb250ZW50UmVwb3J0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/TestComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRlc3RDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
