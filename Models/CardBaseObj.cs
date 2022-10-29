@@ -1,12 +1,16 @@
 using MudBlazor;
 using System.ComponentModel.DataAnnotations;
+using CaptrsCardGamePrototype.Helpers;
+using CaptrsCardGamePrototype.Interfaces;
 
 namespace CaptrsCardGamePrototype.Models; 
 
-public class CardBaseObj : BaseInfoObj {
+public class CardBaseObj : BaseInfoObj, IDropTableItem {
     
+    private readonly string _name;
+
     [Display(Name="Icon")] 
-    public string icon { get; set; } = Icons.Material.Outlined.Info;
+    public string icon { get; set; } = StaticRefs.captrsIcon;
 
     [Display(Name = "Card Type")] 
     public string cardType { get; set; } = string.Empty;
@@ -18,10 +22,19 @@ public class CardBaseObj : BaseInfoObj {
     public List<string> textContentSections { get; set; } = new();
     
     public bool isSpecialText { get; set; }
+    
 
     public override string ToString() {
         var typeText = string.IsNullOrWhiteSpace(cardType) ? "Unknown Type" : cardType;
         var titleText = string.IsNullOrWhiteSpace(cardTitle) ? "Unknown Title" : cardTitle;
         return$"{typeText}: {titleText}";
     }
+
+    public string Name {
+        get => ToString();
+        init => _name = value;
+    }
+
+    public string Selector { get; set; } = "1";
+    public int Order { get; set; }
 }

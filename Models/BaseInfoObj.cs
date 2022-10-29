@@ -2,8 +2,8 @@ namespace CaptrsCardGamePrototype.Models;
 
 public class BaseInfoObj {
     
-    public bool isValid { get; set; }
-    public string? id { get; set; }
+    public bool isValid { get; set; } 
+    public string? id { get; set; } = Guid.NewGuid().ToString();
     public string? name { get; set; }
 
     private string? _displayName;

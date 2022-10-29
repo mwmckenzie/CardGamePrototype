@@ -109,17 +109,17 @@
             cardType = "Prototype",
         };
 
+        var index = 0;
         foreach (var textSection in textSections) {
             var newCard = new CardBaseObj() {
                 isValid = true,
-                //name = "Sample Card",
                 cardType = "Prototype",
-                cardTitle = "Sample Card",
+                cardTitle = $"Sample Card (Variant {index + 1})",
                 textContentSections = textSection
             };
             newCard.isSpecialText = true;
             _cardDataService.cards.Add(newCard);
-            
+            index++;
         }
         StateHasChanged();
     }

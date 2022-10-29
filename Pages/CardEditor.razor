@@ -5,9 +5,26 @@
 @inject CardDataService _cardDataService
 @inject ISnackbar _snackbar
 
+<PageTitle>Card Editor</PageTitle>
+
+<MudText Typo="Typo.h3" Class="mt-4 mb-0">Card Editor</MudText>
+
+<MudPaper Class="pa-4 my-4">
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h5">Card Position in Collection:</MudText>
+        @if (cardIndex > 0) {
+            <MudChip Color="Color.Primary">@cardIndex</MudChip>
+        }
+        @if (cardIndex < 1) {
+            <MudChip Color="Color.Warning">Not In Collection</MudChip>
+        }
+        
+    </MudStack>
+</MudPaper>
+
 <MudStack Row="true">
     <MudContainer MaxWidth="MaxWidth.ExtraSmall">
-    <MudCard>
+        <MudCard>
             <MudCardContent>
                 <MudButton Class="mt-4"
                            OnClick="@AddCardToDataService"
@@ -18,18 +35,18 @@
                 <MudButton Class="mt-4"
                            OnClick="@ResetCard"
                            Color="Color.Success"
-                                           Variant="Variant.Filled">
-                                    New Card
-                                </MudButton>
+                           Variant="Variant.Filled">
+                    New Card
+                </MudButton>
                 <MudDivider Class="my-4"/>
-                <MudTextField Variant="Variant.Outlined" 
-                              @bind-Value="@_cardObj.cardType" 
-                              For="@(() => _cardObj.cardType)" 
+                <MudTextField Variant="Variant.Outlined"
+                              @bind-Value="@_cardObj.cardType"
+                              For="@(() => _cardObj.cardType)"
                               Label="Card Type"/>
                 <MudTextField Class="mt-4"
-                              Variant="Variant.Outlined" 
-                              @bind-Value="@_cardObj.cardTitle" 
-                              For="@(() => _cardObj.cardTitle)" 
+                              Variant="Variant.Outlined"
+                              @bind-Value="@_cardObj.cardTitle"
+                              For="@(() => _cardObj.cardTitle)"
                               Label="Card Title"/>
                 <MudDivider Class="my-4"/>
                 <MudButton Class="mb-4"
@@ -38,14 +55,14 @@
                            Variant="Variant.Filled">
                     New Text Section
                 </MudButton>
-                
+
                 @{ int x = 0; }
                 @foreach (var textContent in _cardObj.textContentSections) {
                     var y = x;
-                    <MudTextField T="string" 
-                                  Label="Text Content" 
-                                  Variant="Variant.Outlined" 
-                                  @bind-Value="@_cardObj.textContentSections[y]" 
+                    <MudTextField T="string"
+                                  Label="Text Content"
+                                  Variant="Variant.Outlined"
+                                  @bind-Value="@_cardObj.textContentSections[y]"
                                   Lines="4"/>
                     x++;
                 }
@@ -57,14 +74,14 @@
                         Remove Text Section
                     </MudButton>
                 }
-                
+
                 <MudDivider Class="my-4"/>
-                <MudSwitch @bind-Checked="@isValid" 
-                           Color="Color.Success" 
-                           UnCheckedColor="Color.Dark" 
+                <MudSwitch @bind-Checked="@isValid"
+                           Color="Color.Success"
+                           UnCheckedColor="Color.Dark"
                            Label="Card Enabled"/>
             </MudCardContent>
-    
+
         </MudCard>
     </MudContainer>
     
@@ -82,6 +99,9 @@
     private readonly string demoText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     private CardBaseObj _cardObj = new();
     private bool _isValid;
+
+    private int cardIndex => _cardDataService.cards.IndexOf(_cardObj) + 1;
+    //private string cardPosition => cardIndex > 0 ? cardIndex.ToString() : "Not In Collection";
 
     private bool isValid {
         get => _isValid;

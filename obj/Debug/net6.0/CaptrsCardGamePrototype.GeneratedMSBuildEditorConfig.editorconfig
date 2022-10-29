@@ -26,6 +26,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZEVkaXRvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CSharp/CaptrsCardGamePrototype/Pages/CollectionEditor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29sbGVjdGlvbkVkaXRvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CSharp/CaptrsCardGamePrototype/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

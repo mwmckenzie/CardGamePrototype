@@ -1,0 +1,136 @@
+@page "/CollectionEditor"
+@using CaptrsCardGamePrototype.Services
+@using CaptrsCardGamePrototype.Models
+@using CaptrsCardGamePrototype.Interfaces
+@using MudBlazor.Utilities
+@using CaptrsCardGamePrototype.Helpers
+
+@inject CardDataService _cardDataService
+
+<PageTitle>Card Collection Editor</PageTitle>
+
+<MudText Typo="Typo.h3" Class="mt-4 mb-0">Card Collection Editor</MudText>
+
+<MudPaper Class="pa-4 my-4">
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h5">Cards in Collection:</MudText>
+        <MudChip Color="Color.Primary">@cardCount</MudChip>
+    </MudStack>
+</MudPaper>
+
+<MudStack Row="true">
+    
+    <MudDropContainer T="IDropTableItem" 
+                      Items="_cards" 
+                      ItemsSelector="@((item,dropzone) => item.Selector == dropzone)"
+                      ItemDropped="ItemUpdated"
+                      @ref="_container"
+                      Class="d-flex flex-wrap flex-grow-1">
+        <ChildContent>
+            <MudPaper Class="ma-4 flex-grow-1">
+                <MudList Clickable="true" @bind-SelectedItem="@selectedItem" @bind-SelectedValue="@selectedValue" Class="d-flex flex-column mud-height-full">
+                    <MudListSubheader>Card Collection</MudListSubheader>
+                    <MudDropZone T="IDropTableItem" 
+                                 Identifier="@_dropzoneName" 
+                                 Class="flex-grow-1" 
+                                 AllowReorder="true"/>
+                </MudList>
+            </MudPaper>
+        </ChildContent>
+        <ItemRenderer>
+            <MudListItem Value="@context" IconColor="Color.Primary" Icon="@StaticRefs.captrsIcon" Text="@($"{context.Name}")"/> 
+        </ItemRenderer>
+    </MudDropContainer>
+    
+    @* <MudGrid> *@
+    @*     <MudItem xs="12" md="6"> *@
+    @*     <MudText Typo="Typo.h6" GutterBottom="true">Current Card Collection</MudText> *@
+    @*     <MudPaper Width="100%"> *@
+    @*         <MudList Clickable="true" Dense="false" DisableGutters="false"> *@
+    @*             @foreach (var card in _cardDataService.cards) { *@
+    @*                 <MudListItem Text="@card.ToString()"/> *@
+    @*             } *@
+    @*         </MudList> *@
+    @*     </MudPaper> *@
+    @* </MudItem> *@
+    @* </MudGrid> *@
+
+    <MudPaper Width="300px">
+        <MudList Clickable="true">
+            <MudListSubheader>
+                <MudStack Spacing="0">
+                    <MudText Typo="Typo.inherit">Selected Card</MudText>
+                    <MudText Typo="Typo.h6">@selectedCardName</MudText>
+                </MudStack>
+                
+            </MudListSubheader>
+            <MudListItem Text="Remove From Collection" 
+                         IconColor="Color.Secondary" 
+                         Icon="@Icons.Material.Filled.Delete" 
+                         OnClick="@DeleteSelectedCard"/>
+
+        </MudList>
+    </MudPaper>
+</MudStack>
+
+@code
+{
+    private MudListItem? selectedItem { get; set; }
+    private object? selectedValue { get; set; }
+    private CardBaseObj? selectedCard { get; set; }
+
+    private MudDropContainer<IDropTableItem> _container;
+    private string _dropzoneName = "1";
+
+    private int cardCount => _cardDataService.cards.Count;
+    private List<CardBaseObj> _cards;
+
+    private string selectedCardName => selectedValue is CardBaseObj card ? card.Name : "No Card Selected";
+
+    protected override void OnInitialized() {
+        _cards = _cardDataService.cards;
+        _cards = _cards.OrderBy(x => x.Order).ToList();
+        // var index = 0;
+        // foreach (var card in _cardDataService.cards) {
+        //     card.Order = index;
+        //     index++;
+        // }
+        base.OnInitialized();
+    }
+
+    private void ItemUpdated(MudItemDropInfo<IDropTableItem> dropItem)
+    {
+        dropItem.Item.Selector = dropItem.DropzoneIdentifier;
+        
+        var indexOffset = dropItem.DropzoneIdentifier switch
+        {
+            "2"  => _cards.Count(x => x.Selector == "1"),
+            _ => 0,
+            };
+
+        _cards.UpdateOrder(dropItem, item => item.Order, indexOffset);
+        _cards = _cards.OrderBy(x => x.Order).ToList();
+        RebuildCardsInDataService();
+    }
+
+    private void RebuildCardsInDataService() {
+        _cardDataService.cards = new();
+        foreach (var cardBaseObj in _cards) {
+            _cardDataService.cards.Add(cardBaseObj);
+        }
+        StateHasChanged();
+    }
+
+    private void DeleteSelectedCard() {
+        if (selectedValue is not CardBaseObj card)
+            return;
+        
+        _cards.Remove(card);
+        RebuildCardsInDataService();
+        _container.Refresh();
+    }
+    
+    
+    
+    
+}
