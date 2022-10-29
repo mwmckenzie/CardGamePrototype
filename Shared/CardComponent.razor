@@ -1,5 +1,6 @@
 @using CaptrsCardGamePrototype.Models
 @using System.Text.Encodings.Web
+@using CaptrsCardGamePrototype.Services
 
 @if (cardBase != null) {
     
@@ -15,7 +16,9 @@
                     <CardBaseInfo cardBaseInfo="@cardBase"/>
                 </CardHeaderContent>
                 <CardHeaderActions>
-                    <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default"/>
+                    <MudTooltip Text="Send To Editor?">
+                        <MudIconButton OnClick="@onSettingsClickCallback" Icon="@Icons.Material.Filled.Settings" Color="Color.Default"/>
+                    </MudTooltip>
                 </CardHeaderActions>
             </MudCardHeader>
             <MudCardContent>
@@ -65,8 +68,13 @@
         }
     }
     
+    [Parameter]
+    public EventCallback<MouseEventArgs> onSettingsClickCallback { get; set; }
+    
     private void OnStateChangedEvent() {
         StateHasChanged();
     }
+    
+    
     
 }

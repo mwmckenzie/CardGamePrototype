@@ -5,6 +5,7 @@
 @inject CardDataService _cardDataService
 @inject TextContentBuilder _textContentBuilder
 @inject HttpClient _http
+@inject ISnackbar _snackbar
 
 
 <PageTitle>Index</PageTitle>
@@ -21,7 +22,7 @@
         @foreach (var card in _cardDataService.cards) {
             <MudCarouselItem Transition="transition">
                 <div class="d-flex my-2" style="height:100%">
-                    <CardComponent cardBase="card"/>
+                    <CardComponent cardBase="card" onSettingsClickCallback="() => SetSelectedCardToEditor(card)"/>
                 </div>
             </MudCarouselItem>
         }
@@ -79,29 +80,24 @@
 
     protected override async Task OnInitializedAsync() {
         await base.OnInitializedAsync();
-        if (_cardDataService.loadComplete) {
-            return;
-        }
+        if (_cardDataService.loadComplete) {return;}
+        
         await _cardDataService.Init(_http);
 
         _textContentBuilder.textLookUps = _cardDataService.textSectionLookUps;
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_01");
-        //textSections01.Add(_textContentBuilder.textLookUps.lookUpDictName);
         foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
-            //textSections.Add(loadedTextSection);
             textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));
         }
         textSections.Add(textSections01);
         
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_04");
-        //textSections02.Add(_textContentBuilder.textLookUps.lookUpDictName);
         foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
             textSections02.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
         }
         textSections.Add(textSections02);
         
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_03");
-        //textSections03.Add(_textContentBuilder.textLookUps.lookUpDictName);
         foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
             textSections03.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
         }
@@ -128,7 +124,20 @@
         StateHasChanged();
     }
 
+    private void SetSelectedCardToEditor(CardBaseObj cardBaseObj) {
+        _cardDataService.editorCard = cardBaseObj;
+        AddSnackBarUpdate($"{cardBaseObj.cardType}: {cardBaseObj.cardTitle} Sent To Card Editor!");
+    }
 
+    private void AddSnackBarUpdate(string text) {
+        _snackbar.Clear();
+        _snackbar.Add(text, Severity.Success, config =>
+        {
+            config.RequireInteraction = true;
+            config.ShowCloseIcon = false;
+            config.Onclick = snackbar => Task.CompletedTask;
+        });
+    }
     // private List<RenderFragment> renderSections01 { get; set; } = new();
 
     // foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
