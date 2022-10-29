@@ -9,15 +9,11 @@ public class TextContentBuilder {
     public TextSectionLookUps textLookUps { get; set; }
 
     public string BuildTextContent(string text) {
-
-        var num = 0;
         
         while (true) {
-            var first = text.IndexOf("#");
-            var last = text.IndexOf("#", first + 1);
+            var first = text.IndexOf("#", StringComparison.OrdinalIgnoreCase);
+            var last = text.IndexOf("#", first + 1, StringComparison.OrdinalIgnoreCase);
             
-            Debug.Print(text);
-
             if (first < 0 || last < 0 || last <= first) return text;
             
             var key = text[first..(last + 1)];
@@ -25,7 +21,6 @@ public class TextContentBuilder {
 
             text = text.Replace(key, WrapTextInDiv(value));
         }
-        
     }
 
     private string WrapTextInMud(string text) {

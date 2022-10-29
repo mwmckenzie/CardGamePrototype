@@ -3,6 +3,7 @@
 @using CaptrsCardGamePrototype.Services
 
 @inject CardDataService _cardDataService
+@inject ISnackbar _snackbar
 
 <MudStack Row="true">
     <MudContainer MaxWidth="MaxWidth.ExtraSmall">
@@ -79,19 +80,8 @@
 @code {
 
     private readonly string demoText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    private CardBaseObj _cardObj;
+    private CardBaseObj _cardObj = new();
     private bool _isValid;
-
-    private string _sampleText = string.Empty;
-    private string sampleText {
-        get => _sampleText;
-        set {
-            if (string.IsNullOrWhiteSpace(value) ||  _sampleText == value) {
-                return;
-            }
-            _sampleText = value;
-        }
-    }
 
     private bool isValid {
         get => _isValid;
@@ -106,15 +96,18 @@
         if (_cardDataService.editorCard is null) {
             ResetCard();
         }
-        _cardObj = _cardDataService.editorCard;
+        _cardObj = _cardDataService.editorCard ?? new CardBaseObj();
         isValid = true;
         base.OnInitialized();
     }
 
     private void ResetCard() {
-        _cardObj = new() { isValid = true, textContentSections = new()};
-        _cardObj.cardTitle = "Add New Title";
-        _cardObj.cardType = "Demo";
+        _cardObj = new CardBaseObj {
+            isValid = true, 
+            textContentSections = new List<string>(),
+            cardTitle = "Add New Title",
+            cardType = "Demo"
+        };
         SubmitTextContent();
         _cardDataService.editorCard = _cardObj;
         StateHasChanged();
@@ -135,6 +128,17 @@
 
     private void AddCardToDataService() {
         _cardDataService.cards.Add(_cardObj);
+        AddSnackBarUpdate($"[{_cardObj}] Card Added To Collection!");
         ResetCard();
+    }
+    
+    private void AddSnackBarUpdate(string text) {
+        _snackbar.Clear();
+        _snackbar.Add(text, Severity.Success, config =>
+        {
+            config.CloseAfterNavigation = true;
+            config.ShowCloseIcon = true;
+            config.Onclick = _ => Task.CompletedTask;
+        });
     }
 }

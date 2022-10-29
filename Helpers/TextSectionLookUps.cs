@@ -16,6 +16,9 @@ public class TextSectionLookUps {
     }
 
     public void AddLookUpDict(LookUpDict lookUpDict) {
+        if (string.IsNullOrWhiteSpace(lookUpDict.name)) {
+            return;
+        }
         _lookUpDicts.TryAdd(lookUpDict.name, lookUpDict);
     }
 

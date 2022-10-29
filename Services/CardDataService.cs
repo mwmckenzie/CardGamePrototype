@@ -42,6 +42,9 @@ public class CardDataService {
     }
     
     private async Task BuildLookUp(List<string> listOut, string filename) {
+        if (_http is null) {
+            return;
+        }
         var list = await _http.GetFromJsonAsync<List<string>>(filename);
         if (list is null) {
             return;
@@ -51,9 +54,12 @@ public class CardDataService {
 
     private async Task<Dictionary<string, string>> BuildLookUpDict(string filepath) {
         var dict = new Dictionary<string, string>();
+        if (_http is null) {
+            return dict;
+        }
         var loadedDict = await _http.GetFromJsonAsync<Dictionary<string, string>>(filepath);
         if (loadedDict is null) {
-            return null;
+            return dict;
         }
         foreach (var (key, value) in loadedDict) {
             dict.Add(key, value);
