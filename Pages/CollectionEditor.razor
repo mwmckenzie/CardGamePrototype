@@ -6,6 +6,7 @@
 @using CaptrsCardGamePrototype.Helpers
 
 @inject CardDataService _cardDataService
+@inject NavigationManager _navigationManager
 
 <PageTitle>Card Collection Editor</PageTitle>
 
@@ -62,13 +63,22 @@
                     <MudText Typo="Typo.inherit">Selected Card</MudText>
                     <MudText Typo="Typo.h6">@selectedCardName</MudText>
                 </MudStack>
-                
             </MudListSubheader>
-            <MudListItem Text="Remove From Collection" 
-                         IconColor="Color.Secondary" 
-                         Icon="@Icons.Material.Filled.Delete" 
+            <MudListItem Text="Send To Editor" 
+                         IconColor="Color.Info" 
+                         Disabled="@selectedCardIsInvalid"
+                         Icon="@Icons.Material.Filled.EditNote" 
+                         OnClick="@SendSelectedCardToEditor"/>
+            <MudListItem Text="Jump To Editor" 
+                         IconColor="Color.Success" 
+                         Disabled="@selectedCardIsInvalid"
+                         Icon="@Icons.Material.Filled.NavigateNext" 
+                         OnClick="@NavigateToEditor"/>
+            <MudListItem Text="Remove From Collection"
+                         IconColor="Color.Secondary"
+                         Icon="@Icons.Material.Filled.Delete"
+                         Disabled="@selectedCardIsInvalid"
                          OnClick="@DeleteSelectedCard"/>
-
         </MudList>
     </MudPaper>
 </MudStack>
@@ -85,6 +95,7 @@
     private int cardCount => _cardDataService.cards.Count;
     private List<CardBaseObj> _cards;
 
+    private bool selectedCardIsInvalid => selectedValue is not CardBaseObj;
     private string selectedCardName => selectedValue is CardBaseObj card ? card.Name : "No Card Selected";
 
     protected override void OnInitialized() {
@@ -129,7 +140,16 @@
         RebuildCardsInDataService();
         _container.Refresh();
     }
-    
+
+    private void SendSelectedCardToEditor() {
+        if (selectedValue is not CardBaseObj card)
+            return;
+        _cardDataService.editorCard = card;
+    }
+
+    private void NavigateToEditor() {
+        _navigationManager.NavigateTo("CardEditor");
+    }
     
     
     
