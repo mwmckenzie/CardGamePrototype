@@ -21,5 +21,7 @@ public class CardBaseObj : BaseInfoObj, ICardDisplay {
     [Display(Name="Text Content Sections")]
     public List<string> textContentSections { get; set; }
     
+    public bool isSpecialText { get; set; }
+    
 
 }

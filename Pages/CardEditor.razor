@@ -1,33 +1,68 @@
 @page "/CardEditor"
 @using CaptrsCardGamePrototype.Models
+@using CaptrsCardGamePrototype.Services
 
+@inject CardDataService _cardDataService
 
 <MudStack Row="true">
+    <MudContainer MaxWidth="MaxWidth.ExtraSmall">
     <MudCard>
-        <MudCardContent>
-            <MudTextField Variant="Variant.Outlined" @bind-Value="@_cardObj.cardType" For="@(() => _cardObj.cardType)" Label="Card Type"/>
-            <MudTextField Variant="Variant.Outlined" @bind-Value="@_cardObj.cardTitle" For="@(() => _cardObj.cardTitle)" Label="Card Title"/>
-            <MudDivider Class="my-4"/>
-            <MudButton Class="mb-4" OnClick="@SubmitTextContent" Variant="Variant.Filled">Add Text Content</MudButton>
-            @{ int x = 0; }
-            @foreach(var textContent in _cardObj.textContentSections) {
-                var y = x;
-                <MudTextField T="string" Label="Text Content" Variant="Variant.Outlined" @bind-Value="@_cardObj.textContentSections[y]" Lines="4" />
-                x++;
-            }
-            @if (_cardObj.textContentSections.Count > 0) {
-                <MudButton Class="mt-4" OnClick="@RemoveLastTextContent" Variant="Variant.Filled">Remove Text Content</MudButton>
-            }
-            <MudDivider Class="my-4"/>
-            <MudSwitch @bind-Checked="@isValid" Color="Color.Success" UnCheckedColor="Color.Dark" Label="Card Enabled" />
-        </MudCardContent>
-        
-    </MudCard>
+            <MudCardContent>
+                <MudButton Class="mt-4"
+                           OnClick="@AddCardToDataService"
+                           Variant="Variant.Filled">
+                    Add Card To Collection
+                </MudButton>
+                <MudDivider Class="my-4"/>
+                <MudTextField Variant="Variant.Outlined" 
+                              @bind-Value="@_cardObj.cardType" 
+                              For="@(() => _cardObj.cardType)" 
+                              Label="Card Type"/>
+                <MudTextField Class="mt-4"
+                              Variant="Variant.Outlined" 
+                              @bind-Value="@_cardObj.cardTitle" 
+                              For="@(() => _cardObj.cardTitle)" 
+                              Label="Card Title"/>
+                <MudDivider Class="my-4"/>
+                <MudButton Class="mb-4"
+                           OnClick="@SubmitTextContent"
+                           Variant="Variant.Filled">
+                    Add Text Content
+                </MudButton>
+                
+                @{ int x = 0; }
+                @foreach (var textContent in _cardObj.textContentSections) {
+                    var y = x;
+                    <MudTextField T="string" 
+                                  Label="Text Content" 
+                                  Variant="Variant.Outlined" 
+                                  @bind-Value="@_cardObj.textContentSections[y]" 
+                                  Lines="4"/>
+                    x++;
+                }
+                @if (_cardObj.textContentSections.Count > 0) {
+                    <MudButton Class="mt-4"
+                               OnClick="@RemoveLastTextContent"
+                               Variant="Variant.Filled">
+                        Remove Text Content
+                    </MudButton>
+                }
+                
+                <MudDivider Class="my-4"/>
+                <MudSwitch @bind-Checked="@isValid" 
+                           Color="Color.Success" 
+                           UnCheckedColor="Color.Dark" 
+                           Label="Card Enabled"/>
+            </MudCardContent>
     
+        </MudCard>
+    </MudContainer>
+    
+
     @if (isValid) {
         <CardComponent stateToggle="@isValid" cardBase="@_cardObj"/>
     }
-    
+
 </MudStack>
 
 
@@ -35,7 +70,7 @@
 @code {
 
     private readonly string demoText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    private CardBaseObj _cardObj = new() { isValid = true, textContentSections = new()};
+    private CardBaseObj _cardObj;
     private bool _isValid;
 
     private string _sampleText = string.Empty;
@@ -59,11 +94,21 @@
     }
 
     protected override void OnInitialized() {
+        if (_cardDataService.editorCard is null) {
+            ResetCard();
+        }
+        _cardObj = _cardDataService.editorCard;
+        isValid = true;
+        base.OnInitialized();
+    }
+
+    private void ResetCard() {
+        _cardObj = new() { isValid = true, textContentSections = new()};
         _cardObj.cardTitle = "Add New Title";
         _cardObj.cardType = "Demo";
         SubmitTextContent();
-        isValid = true;
-        base.OnInitialized();
+        _cardDataService.editorCard = _cardObj;
+        StateHasChanged();
     }
 
     private void SubmitTextContent() {
@@ -77,5 +122,10 @@
         }
         _cardObj.textContentSections.RemoveAt(_cardObj.textContentSections.Count - 1);
         StateHasChanged();
+    }
+
+    private void AddCardToDataService() {
+        _cardDataService.cards.Add(_cardObj);
+        ResetCard();
     }
 }

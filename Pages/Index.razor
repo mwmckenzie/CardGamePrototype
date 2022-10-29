@@ -9,40 +9,52 @@
 
 <PageTitle>Index</PageTitle>
 
-<MudCarousel Class="mud-width-full my-2" 
-             Style="height:85vh;"
-             ShowArrows="@arrows" 
-             ShowBullets="@bullets"
-             EnableSwipeGesture="@enableSwipeGesture"
-             AutoCycle="@autocycle" 
-             TData="object">
+@if (_cardDataService.cards.Count > 0) {
+    <MudCarousel Class="mud-width-full my-2" 
+                 Style="height:85vh;"
+                 ShowArrows="@arrows" 
+                 ShowBullets="@bullets"
+                 EnableSwipeGesture="@enableSwipeGesture"
+                 AutoCycle="@autocycle" 
+                 TData="object">
     
-    <MudCarouselItem Transition="transition" Color="@Color.Primary">
-        <div class="d-flex my-2" style="height:100%">
-            <CardBase textSections="@textSections01" cardBase="@cardBase"/>
-        </div>
-    </MudCarouselItem>
-    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
-        <div class="d-flex my-2" style="height:100%">
-            <CardBase textSections="@textSections02" cardBase="@cardBase"/>
-        </div>
-    </MudCarouselItem>
-    <MudCarouselItem Transition="transition">
-        <div class="d-flex my-2" style="height:100%">
-            <CardBase textSections="@textSections03" cardBase="@cardBase"/>
-        </div>
-    </MudCarouselItem>
-</MudCarousel>
+        @foreach (var card in _cardDataService.cards) {
+            <MudCarouselItem Transition="transition">
+                <div class="d-flex my-2" style="height:100%">
+                    <CardComponent cardBase="card"/>
+                </div>
+            </MudCarouselItem>
+        }
+    </MudCarousel>
+    
+    <MudSelect @bind-Value="transition" Label="Transition" Class="ma-2">
+        <MudSelectItem Value="@Transition.Fade">Fade</MudSelectItem>
+        <MudSelectItem Value="@Transition.Slide">Slide</MudSelectItem>
+        <MudSelectItem Value="@Transition.None">None</MudSelectItem>
+    </MudSelect>
+    <MudSwitch @bind-Checked="@arrows" Color="Color.Primary">Show Arrows</MudSwitch>
+    <MudSwitch @bind-Checked="@bullets" Color="Color.Primary">Show Bullets</MudSwitch>
+    <MudSwitch @bind-Checked="@enableSwipeGesture" Color="Color.Primary">Enable Swap Gesture</MudSwitch>
+    <MudSwitch @bind-Checked="@autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</MudSwitch>
+}
 
-<MudSelect @bind-Value="transition" Label="Transition" Class="ma-2">
-    <MudSelectItem Value="@Transition.Fade">Fade</MudSelectItem>
-    <MudSelectItem Value="@Transition.Slide">Slide</MudSelectItem>
-    <MudSelectItem Value="@Transition.None">None</MudSelectItem>
-</MudSelect>
-<MudSwitch @bind-Checked="@arrows" Color="Color.Primary">Show Arrows</MudSwitch>
-<MudSwitch @bind-Checked="@bullets" Color="Color.Primary">Show Bullets</MudSwitch>
-<MudSwitch @bind-Checked="@enableSwipeGesture" Color="Color.Primary">Enable Swap Gesture</MudSwitch>
-<MudSwitch @bind-Checked="@autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</MudSwitch>
+
+    @* <MudCarouselItem Transition="transition" Color="@Color.Primary"> *@
+    @*     <div class="d-flex my-2" style="height:100%"> *@
+    @*         <CardBase textSections="@textSections01" cardBase="@cardBase"/> *@
+    @*     </div> *@
+    @* </MudCarouselItem> *@
+    @* <MudCarouselItem Transition="transition" Color="@Color.Secondary"> *@
+    @*     <div class="d-flex my-2" style="height:100%"> *@
+    @*         <CardBase textSections="@textSections02" cardBase="@cardBase"/> *@
+    @*     </div> *@
+    @* </MudCarouselItem> *@
+    @* <MudCarouselItem Transition="transition"> *@
+    @*     <div class="d-flex my-2" style="height:100%"> *@
+    @*         <CardBase textSections="@textSections03" cardBase="@cardBase"/> *@
+    @*     </div> *@
+    @* </MudCarouselItem> *@
+    
 
 
 @code {
@@ -62,11 +74,14 @@
     private List<string> textSections01 { get; set; } = new();
     private List<string> textSections02 { get; set; } = new();
     private List<string> textSections03 { get; set; } = new();
-    
-    
-    
+
+    private List<List<string>> textSections { get; set; } = new();
+
     protected override async Task OnInitializedAsync() {
         await base.OnInitializedAsync();
+        if (_cardDataService.loadComplete) {
+            return;
+        }
         await _cardDataService.Init(_http);
 
         _textContentBuilder.textLookUps = _cardDataService.textSectionLookUps;
@@ -76,24 +91,41 @@
             //textSections.Add(loadedTextSection);
             textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));
         }
+        textSections.Add(textSections01);
         
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_04");
         //textSections02.Add(_textContentBuilder.textLookUps.lookUpDictName);
         foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
             textSections02.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
         }
+        textSections.Add(textSections02);
         
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_03");
         //textSections03.Add(_textContentBuilder.textLookUps.lookUpDictName);
         foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
             textSections03.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
         }
+        textSections.Add(textSections03);
         
         cardBase = new CardBaseObj() {
             isValid = true,
             name = "Sample Card",
             cardType = "Prototype",
         };
+
+        foreach (var textSection in textSections) {
+            var newCard = new CardBaseObj() {
+                isValid = true,
+                //name = "Sample Card",
+                cardType = "Prototype",
+                cardTitle = "Sample Card",
+                textContentSections = textSection
+            };
+            newCard.isSpecialText = true;
+            _cardDataService.cards.Add(newCard);
+            
+        }
+        StateHasChanged();
     }
 
 

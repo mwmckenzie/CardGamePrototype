@@ -13,7 +13,8 @@ public class CardDataService {
     public TextSectionLookUps textSectionLookUps { get; set; } = new();
     public List<string> loadedTextSections { get; set; } = new();
 
-    public List<CardBaseObj> cards { get; set; }
+    public List<CardBaseObj> cards { get; set; } = new();
+    public CardBaseObj? editorCard { get; set; }
 
     public async Task Init(HttpClient http) {
         _http = http;

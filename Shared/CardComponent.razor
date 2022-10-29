@@ -24,7 +24,12 @@
                         @if (cardBase.textContentSections != null) {
                             foreach (var textSection in cardBase.textContentSections) {
                                 <MudText Class="pa-4" Typo="Typo.body1">
-                                    @textSection
+                                    @if (!cardBase.isSpecialText) {
+                                        @textSection
+                                    }
+                                    @if (cardBase.isSpecialText) {
+                                        @((MarkupString) textSection)
+                                    }
                                     @* @((MarkupString) textSection) *@
                                 </MudText>
                             }
