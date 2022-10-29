@@ -1,7 +1,7 @@
 @using CaptrsCardGamePrototype.Models
 @using System.Text.Encodings.Web
 
-@if (cardBase != null && cardBase.isValid) {
+@if (cardBase != null) {
     
     <MudContainer MaxWidth="MaxWidth.ExtraSmall">
         <MudCard>
@@ -12,7 +12,7 @@
                     </MudAvatar>
                 </CardHeaderAvatar>
                 <CardHeaderContent>
-                    <BaseInfo objTitle="@cardBase.cardType" baseInfoObj="@cardBase"/>
+                    <CardBaseInfo cardBaseInfo="@cardBase"/>
                 </CardHeaderContent>
                 <CardHeaderActions>
                     <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default"/>
@@ -20,11 +20,12 @@
             </MudCardHeader>
             <MudCardContent>
                 <MudPaper Height="400px" Class="pa-2">
-                    <div id="unique_id_scroll_section" class="ma-0" style="height:400px;overflow: auto;">
-                        @if (textSections != null) {
-                            foreach (var textSection in textSections) {
+                    <div id="unique_id_scroll_section" class="ma-0 d-flex flex-column gap-2" style="height:380px;overflow: auto;">
+                        @if (cardBase.textContentSections != null) {
+                            foreach (var textSection in cardBase.textContentSections) {
                                 <MudText Class="pa-4" Typo="Typo.body1">
-                                    @((MarkupString) textSection)
+                                    @textSection
+                                    @* @((MarkupString) textSection) *@
                                 </MudText>
                             }
                         }
@@ -36,8 +37,6 @@
                 <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
             </MudCardActions>
             
-            
-                
         </MudCard>
     </MudContainer>
     
@@ -49,13 +48,20 @@
     
     [Parameter]
     public CardBaseObj? cardBase { get; set; }
-    
-    [Parameter]
-    public string? objTitle { get; set; }
-    
-    [Parameter]
-    public List<string>? textSections { get; set; }
 
+    private bool _stateToggle;
+
+    [Parameter]
+    public bool stateToggle {
+        get => _stateToggle;
+        set {
+            _stateToggle = value;
+            OnStateChangedEvent();
+        }
+    }
     
+    private void OnStateChangedEvent() {
+        StateHasChanged();
+    }
     
 }

@@ -1,0 +1,25 @@
+@using CaptrsCardGamePrototype.Models
+
+@if (cardBaseInfo != null && cardBaseInfo.isValid) {
+    
+    @if (!string.IsNullOrWhiteSpace(cardBaseInfo.cardType)) {
+        <MudText Class="mb-1" Typo="Typo.body2" Color="Color.Tertiary">@cardBaseInfo.cardType</MudText>
+    }
+    <MudText Typo="Typo.h5">@cardBaseInfo.cardTitle</MudText>
+
+    @if (!string.IsNullOrEmpty(cardBaseInfo.url)) {
+        <MudStack Row="true" Spacing="3" Class="my-1">
+            <MudIcon Icon="@Icons.Material.Filled.Link"></MudIcon>
+            <MudLink Href="@cardBaseInfo.url" Target="_blank" Typo="Typo.body1">@cardBaseInfo.url</MudLink>
+        </MudStack>
+    }
+}
+
+
+
+@code {
+    
+    [Parameter]
+    public CardBaseObj? cardBaseInfo { get; set; }
+
+}

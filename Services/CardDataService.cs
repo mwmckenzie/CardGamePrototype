@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using CaptrsCardGamePrototype.Helpers;
+using CaptrsCardGamePrototype.Models;
 
 namespace CaptrsCardGamePrototype.Services; 
 
@@ -11,6 +12,8 @@ public class CardDataService {
 
     public TextSectionLookUps textSectionLookUps { get; set; } = new();
     public List<string> loadedTextSections { get; set; } = new();
+
+    public List<CardBaseObj> cards { get; set; }
 
     public async Task Init(HttpClient http) {
         _http = http;

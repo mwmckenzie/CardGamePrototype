@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Encodings.Web;
 using CaptrsCardGamePrototype.Helpers;
 
@@ -14,6 +15,8 @@ public class TextContentBuilder {
         while (true) {
             var first = text.IndexOf("#");
             var last = text.IndexOf("#", first + 1);
+            
+            Debug.Print(text);
 
             if (first < 0 || last < 0 || last <= first) return text;
             
@@ -27,7 +30,7 @@ public class TextContentBuilder {
 
     private string WrapTextInMud(string text) {
         return
-            $"<MudElement Color=\"Color.Primary\" Class=\"ma-0\" Style=\"font-weight:bold;\">{text}</MudElement>";
+            $"<MudElement Color=\"Color.Secondary\" Class=\"ma-0\" Style=\"font-weight:bold;\">{text}</MudElement>";
     }
     
     private string WrapTextInDiv(string text) {

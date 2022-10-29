@@ -62,7 +62,9 @@
     private List<string> textSections01 { get; set; } = new();
     private List<string> textSections02 { get; set; } = new();
     private List<string> textSections03 { get; set; } = new();
-
+    
+    
+    
     protected override async Task OnInitializedAsync() {
         await base.OnInitializedAsync();
         await _cardDataService.Init(_http);
@@ -70,10 +72,9 @@
         _textContentBuilder.textLookUps = _cardDataService.textSectionLookUps;
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_01");
         //textSections01.Add(_textContentBuilder.textLookUps.lookUpDictName);
-
         foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
             //textSections.Add(loadedTextSection);
-            textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));    
+            textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));
         }
         
         _textContentBuilder.textLookUps.SetLookUpDict("reportCard01_04");
@@ -96,6 +97,21 @@
     }
 
 
-    
+    // private List<RenderFragment> renderSections01 { get; set; } = new();
 
+    // foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
+    // //textSections.Add(loadedTextSection);
+    //     textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));  
+    //     renderSections01.Add( (builder) => builder.AddMarkupContent(0, 
+    //         _textContentBuilder.BuildTextContent(loadedTextSection)));
+    // }
+    
 }
+
+@* <MudCarouselItem> *@
+@*     <div class="d-flex my-2" style="height:100%"> *@
+@*         @foreach (var renderSection in renderSections01) { *@
+@*             <MudPaper ChildContent="renderSection"/> *@
+@*         } *@
+@*     </div> *@
+@* </MudCarouselItem> *@
