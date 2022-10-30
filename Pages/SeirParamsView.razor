@@ -6,13 +6,6 @@
 @inject SeirDataService _seirDataService
 @inject HttpClient _http
 
-@* <MudPaper Class="mt-2 mb-2 pa-2"> *@
-@*         @foreach (var kvp in _seirParams.labelsAndValues()) { *@
-@*                 <MudText Typo="Typo.subtitle2">@kvp.Key</MudText> *@
-@*                 <MudText Typo="Typo.h6">@kvp.Value.ToString("N4")</MudText> *@
-@*         } *@
-@* </MudPaper> *@
-
 <MudGrid>
     <MudItem xs="12">
         <MudTable Items="@_seirDataService.labeledSeirParams" 
@@ -102,7 +95,6 @@
         }
     </div>
 </div>
-
 
 
 @code {

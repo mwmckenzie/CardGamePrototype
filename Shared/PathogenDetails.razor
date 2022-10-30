@@ -1,0 +1,65 @@
+@using CaptrsCardGamePrototype.Models
+
+@if (pathogen is not null) {
+    <MudPaper Class="pa-4">
+        <MudPaper Class="pa-4 mb-4">
+            <MudText Typo="Typo.h6" Color="Color.Tertiary">Pathogen Details</MudText>
+            <MudText Typo="Typo.h3">@pathogen.typeName</MudText>
+            @if (!string.IsNullOrWhiteSpace(pathogen.url)) {
+                <MudStack Row="true" Spacing="3">
+                    <MudIcon Icon="@Icons.Material.Filled.Link"></MudIcon>
+                    <MudLink Href="@pathogen.url" Target="_blank" Typo="Typo.body1">@pathogen.url</MudLink>
+                </MudStack>
+            }
+        </MudPaper>
+
+        <MudPaper Class="pa-4 mb-4">
+            <MudText Color="Color.Primary" Typo="Typo.subtitle2">Onset</MudText>
+            <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Filled.Timer"></MudIcon>
+                <MudText class="mr-4" Typo="Typo.h6">@pathogen.onset</MudText>
+            </MudStack>
+
+            <MudText class="mt-4" Color="Color.Primary" Typo="Typo.subtitle2">Duration</MudText>
+            <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Filled.Timelapse"></MudIcon>
+                <MudText class="mr-4" Typo="Typo.h6">@pathogen.duration</MudText>
+            </MudStack>
+        </MudPaper>
+        
+        @if (pathogen.acuteSymptoms is not null && pathogen.acuteSymptoms.Count > 0) {
+            <MudPaper Class="pa-4  mb-4">
+                <MudText Color="Color.Primary" Typo="Typo.subtitle2">Acute Symptoms</MudText>
+                @foreach (var symptom in pathogen.acuteSymptoms) {
+                    <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                        <MudIcon Icon="@Icons.Filled.Label"></MudIcon>
+                        <MudText class="mr-4" Typo="Typo.h6">@symptom</MudText>
+                    </MudStack>
+                }
+            </MudPaper>
+        }
+        
+         @if (pathogen.reservoirDetails is not null && pathogen.reservoirDetails.Count > 0) {
+             <MudPaper Class="pa-4  mb-4">
+                 <MudText Color="Color.Primary" Typo="Typo.subtitle2">Reservoir</MudText>
+                 @foreach (var detail in pathogen.reservoirDetails) {
+                     <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                         <MudIcon Icon="@Icons.Filled.Label"></MudIcon>
+                         <MudText class="mr-4" Typo="Typo.h6">@detail</MudText>
+                     </MudStack>
+                 }
+             </MudPaper>
+         }
+    </MudPaper>
+}
+
+
+@code {
+
+    [Parameter] 
+    public Pathogen pathogen { get; set; }
+    
+    [Parameter] 
+    public EventCallback<Pathogen> pathogenChanged { get; set; }
+
+}

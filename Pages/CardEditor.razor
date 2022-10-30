@@ -1,6 +1,7 @@
 @page "/CardEditor"
 @using CaptrsCardGamePrototype.Models
 @using CaptrsCardGamePrototype.Services
+@using CaptrsCardGamePrototype.ViewModels
 
 @inject CardDataService _cardDataService
 @inject ISnackbar _snackbar
@@ -87,12 +88,15 @@
     
 
     @if (isValid) {
-        <CardComponent mapDisplayRequested="DisplayMap" stateToggle="@isValid" cardBase="@_cardObj"/>
+        <CardComponent mapDisplayRequested="@mapOverlay.DisplayMap" 
+                       pathogenViewRequested="@pathogenSideVM.DisplaySideView"
+                       stateToggle="@isValid" cardBase="@_cardObj"/>
     }
 
 </MudStack>
 
-<MapOverlay @bind-isVisible="@mapOverlayIsVisible" @bind-mapFilename="@mapFilename"  />
+<MapOverlay @bind-mapOverlayVM="@mapOverlay"/>
+<PathogenSideView sideViewVM="pathogenSideVM" pathogen="_cardDataService.pathogen" />
 
 @code {
 
@@ -111,9 +115,9 @@
             StateHasChanged();
         }
     }
-    
-    public string mapFilename { get; set; }
-    public bool mapOverlayIsVisible { get; set; }
+
+    public MapOverlayViewModel mapOverlay { get; set; } = new();
+    public SideViewViewModel pathogenSideVM { get; set; } = new();
 
     protected override void OnInitialized() {
         if (_cardDataService.editorCard is null) {
@@ -122,11 +126,6 @@
         _cardObj = _cardDataService.editorCard ?? new CardBaseObj();
         isValid = true;
         base.OnInitialized();
-    }
-    
-    private void DisplayMap(string filename) {
-        mapFilename = filename;
-        mapOverlayIsVisible = true;
     }
 
     private void ResetCard() {

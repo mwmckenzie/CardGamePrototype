@@ -43,9 +43,11 @@
                 </MudPaper>
             </MudCardContent>
             <MudCardActions>
-                <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
-                <MudTooltip Text="Display Map">
-                    <MudIconButton Icon="@Icons.Material.Filled.Map" Color="Color.Default" OnClick="OnDisplayMapClicked" />
+                <MudTooltip Text="Show Pathogen Details">
+                    <MudIconButton Icon="@Icons.Material.Filled.BugReport" Color="Color.Default" OnClick="OnDisplayPathogenViewClicked"/>
+                </MudTooltip>
+                <MudTooltip Text="Show Map">
+                    <MudIconButton Icon="@Icons.Material.Filled.Map" Color="Color.Default" OnClick="OnDisplayMapClicked"/>
                 </MudTooltip>
             </MudCardActions>
             
@@ -80,6 +82,9 @@
     [Parameter]
     public EventCallback<string> mapDisplayRequested { get; set; }
     
+    [Parameter]
+    public EventCallback pathogenViewRequested { get; set; }
+    
     private void OnStateChangedEvent() {
         StateHasChanged();
     }
@@ -89,6 +94,9 @@
         await mapDisplayRequested.InvokeAsync(mapFilename);
     }
     
-    
+    private async Task OnDisplayPathogenViewClicked()
+    {
+        await pathogenViewRequested.InvokeAsync();
+    }
     
 }

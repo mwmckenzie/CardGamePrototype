@@ -1,0 +1,20 @@
+@using CaptrsCardGamePrototype.ViewModels
+@using CaptrsCardGamePrototype.Models
+
+<MudDrawer @bind-Open="@sideViewVM.open" 
+           Width="@sideViewVM.width" 
+           Height="@sideViewVM.height" 
+           Anchor="@sideViewVM.anchor" 
+           Elevation="1" 
+           Variant="@DrawerVariant.Temporary">
+    <PathogenDetails @bind-Pathogen="@pathogen"/>
+</MudDrawer>
+
+@code {
+
+    [Parameter]
+    public SideViewViewModel sideViewVM { get; set; } = new();
+
+    [Parameter] 
+    public Pathogen pathogen { get; set; }
+}

@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using CaptrsCardGamePrototype.Models
 @using CaptrsCardGamePrototype.Services
+@using CaptrsCardGamePrototype.ViewModels
 
 @inject CardDataService _cardDataService
 @inject TextContentBuilder _textContentBuilder
@@ -22,7 +23,8 @@
         @foreach (var card in _cardDataService.cards) {
             <MudCarouselItem Transition="_transition">
                 <div class="d-flex my-2" style="height:100%">
-                    <CardComponent mapDisplayRequested="@DisplayMap" 
+                    <CardComponent mapDisplayRequested="@mapOverlay.DisplayMap" 
+                                   pathogenViewRequested="@pathogenSideVM.DisplaySideView"
                                    cardBase="card" 
                                    onSettingsClickCallback="() => SetSelectedCardToEditor(card)"/>
                 </div>
@@ -41,24 +43,8 @@
     <MudSwitch @bind-Checked="@_autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</MudSwitch>
 }
 
-<MapOverlay @bind-isVisible="@mapOverlayIsVisible" @bind-mapFilename="@mapFilename"  />
-
-@* <MudCarouselItem Transition="transition" Color="@Color.Primary"> *@
-    @*     <div class="d-flex my-2" style="height:100%"> *@
-    @*         <CardBase textSections="@textSections01" cardBase="@cardBase"/> *@
-    @*     </div> *@
-    @* </MudCarouselItem> *@
-    @* <MudCarouselItem Transition="transition" Color="@Color.Secondary"> *@
-    @*     <div class="d-flex my-2" style="height:100%"> *@
-    @*         <CardBase textSections="@textSections02" cardBase="@cardBase"/> *@
-    @*     </div> *@
-    @* </MudCarouselItem> *@
-    @* <MudCarouselItem Transition="transition"> *@
-    @*     <div class="d-flex my-2" style="height:100%"> *@
-    @*         <CardBase textSections="@textSections03" cardBase="@cardBase"/> *@
-    @*     </div> *@
-    @* </MudCarouselItem> *@
-    
+<MapOverlay @bind-mapOverlayVM="@mapOverlay"/>
+<PathogenSideView sideViewVM="pathogenSideVM" pathogen="_cardDataService.pathogen" />
 
 
 @code {
@@ -80,9 +66,12 @@
     private List<string> textSections03 { get; set; } = new();
 
     private List<List<string>> textSections { get; set; } = new();
+
+    public MapOverlayViewModel mapOverlay { get; set; } = new();
+    public SideViewViewModel pathogenSideVM { get; set; } = new();
     
-    public string mapFilename { get; set; }
-    public bool mapOverlayIsVisible { get; set; }
+    // public string mapFilename { get; set; }
+    // public bool mapOverlayIsVisible { get; set; }
 
     protected override async Task OnInitializedAsync() {
         await base.OnInitializedAsync();
@@ -146,25 +135,10 @@
         });
     }
 
-    private void DisplayMap(string filename) {
-        mapFilename = filename;
-        mapOverlayIsVisible = true;
-    }
-    // private List<RenderFragment> renderSections01 { get; set; } = new();
-
-    // foreach (var loadedTextSection in _cardDataService.loadedTextSections) {
-    // //textSections.Add(loadedTextSection);
-    //     textSections01.Add(_textContentBuilder.BuildTextContent(loadedTextSection));  
-    //     renderSections01.Add( (builder) => builder.AddMarkupContent(0, 
-    //         _textContentBuilder.BuildTextContent(loadedTextSection)));
+    // private void DisplayMap(string filename) {
+    //     mapOverlay.DisplayMap(filename);
+    //     mapFilename = filename;
+    //     mapOverlayIsVisible = true;
     // }
     
 }
-
-@* <MudCarouselItem> *@
-@*     <div class="d-flex my-2" style="height:100%"> *@
-@*         @foreach (var renderSection in renderSections01) { *@
-@*             <MudPaper ChildContent="renderSection"/> *@
-@*         } *@
-@*     </div> *@
-@* </MudCarouselItem> *@

@@ -16,12 +16,14 @@ public class CardDataService {
     public List<CardBaseObj> cards { get; set; } = new();
     public CardBaseObj? editorCard { get; set; }
 
+    public List<string> acuteSymptoms { get; set; } = new();
+    public Pathogen? pathogen { get; set; }
+
     public async Task Init(HttpClient http) {
         _http = http;
         if (_isInitialized) return;
 
         await LoadLookUpsAsync();
-
         OnInitializationComplete();
     }
 
@@ -39,6 +41,8 @@ public class CardDataService {
         }
         
         await BuildLookUp(loadedTextSections, "data/testTextInput01.json");
+        await BuildLookUp(acuteSymptoms, "data/acuteSymptomsList.json");
+        await BuildPathogen("data/Influenza_A_H9N2.json");
     }
     
     private async Task BuildLookUp(List<string> listOut, string filename) {
@@ -50,6 +54,13 @@ public class CardDataService {
             return;
         }
         listOut.AddRange(list);
+    }
+    
+    private async Task BuildPathogen(string filename) {
+        if (_http is null) {
+            return;
+        }
+        pathogen = await _http.GetFromJsonAsync<Pathogen>(filename);
     }
 
     private async Task<Dictionary<string, string>> BuildLookUpDict(string filepath) {
