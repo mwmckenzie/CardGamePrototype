@@ -22,7 +22,9 @@
         @foreach (var card in _cardDataService.cards) {
             <MudCarouselItem Transition="_transition">
                 <div class="d-flex my-2" style="height:100%">
-                    <CardComponent cardBase="card" onSettingsClickCallback="() => SetSelectedCardToEditor(card)"/>
+                    <CardComponent mapDisplayRequested="@DisplayMap" 
+                                   cardBase="card" 
+                                   onSettingsClickCallback="() => SetSelectedCardToEditor(card)"/>
                 </div>
             </MudCarouselItem>
         }
@@ -39,8 +41,9 @@
     <MudSwitch @bind-Checked="@_autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</MudSwitch>
 }
 
+<MapOverlay @bind-isVisible="@mapOverlayIsVisible" @bind-mapFilename="@mapFilename"  />
 
-    @* <MudCarouselItem Transition="transition" Color="@Color.Primary"> *@
+@* <MudCarouselItem Transition="transition" Color="@Color.Primary"> *@
     @*     <div class="d-flex my-2" style="height:100%"> *@
     @*         <CardBase textSections="@textSections01" cardBase="@cardBase"/> *@
     @*     </div> *@
@@ -77,6 +80,9 @@
     private List<string> textSections03 { get; set; } = new();
 
     private List<List<string>> textSections { get; set; } = new();
+    
+    public string mapFilename { get; set; }
+    public bool mapOverlayIsVisible { get; set; }
 
     protected override async Task OnInitializedAsync() {
         await base.OnInitializedAsync();
@@ -138,6 +144,11 @@
             config.ShowCloseIcon = false;
             config.Onclick = _ => Task.CompletedTask;
         });
+    }
+
+    private void DisplayMap(string filename) {
+        mapFilename = filename;
+        mapOverlayIsVisible = true;
     }
     // private List<RenderFragment> renderSections01 { get; set; } = new();
 

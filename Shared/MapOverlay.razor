@@ -1,0 +1,35 @@
+
+<MudOverlay @bind-Visible="_isVisible" DarkBackground="true" AutoClose="true">
+                <MudImage ObjectFit="ObjectFit.Fill" 
+                          ObjectPosition="ObjectPosition.Center" 
+                          Width="800" Src="@mapFilename" 
+                          Alt="Game Map"  
+                          Elevation="25"/>
+                </MudOverlay>
+
+@code {
+
+    [Parameter]
+    public string mapFilename { get; set; } = "img/map-main.png";
+
+    [Parameter]
+    public bool isVisible {
+        get => _isVisible;
+        set {
+            _isVisible = value;
+            OpenOverlay();
+        }
+    }
+    
+    private bool _isVisible;
+
+    [Parameter] 
+    public EventCallback<bool> isVisibleChanged { get; set; }
+    
+    [Parameter] 
+    public EventCallback<string> mapFilenameChanged { get; set; }
+    
+    private void OpenOverlay() {
+        StateHasChanged();
+    }
+}

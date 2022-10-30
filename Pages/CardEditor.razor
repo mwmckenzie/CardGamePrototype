@@ -87,12 +87,12 @@
     
 
     @if (isValid) {
-        <CardComponent stateToggle="@isValid" cardBase="@_cardObj"/>
+        <CardComponent mapDisplayRequested="DisplayMap" stateToggle="@isValid" cardBase="@_cardObj"/>
     }
 
 </MudStack>
 
-
+<MapOverlay @bind-isVisible="@mapOverlayIsVisible" @bind-mapFilename="@mapFilename"  />
 
 @code {
 
@@ -111,6 +111,9 @@
             StateHasChanged();
         }
     }
+    
+    public string mapFilename { get; set; }
+    public bool mapOverlayIsVisible { get; set; }
 
     protected override void OnInitialized() {
         if (_cardDataService.editorCard is null) {
@@ -119,6 +122,11 @@
         _cardObj = _cardDataService.editorCard ?? new CardBaseObj();
         isValid = true;
         base.OnInitialized();
+    }
+    
+    private void DisplayMap(string filename) {
+        mapFilename = filename;
+        mapOverlayIsVisible = true;
     }
 
     private void ResetCard() {

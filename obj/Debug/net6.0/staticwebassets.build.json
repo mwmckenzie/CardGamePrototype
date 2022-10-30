@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "o/XsOz/VvD9BFhcmT0bzCPNAeMO021/VPNCaXgciSEc=",
+  "Hash": "E4mp/pwJq89ucWqTZNJ6U4oXqryzwU9AjbsHtkQc0Rw=",
   "Source": "CaptrsCardGamePrototype",
   "BasePath": "/",
   "Mode": "Root",
@@ -7021,6 +7021,40 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\img\\map-main.png",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "img/map-main.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\map-main.png"
+    },
+    {
+      "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\img\\triangle-element.png",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "img/triangle-element.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\triangle-element.png"
+    },
+    {
       "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\index.html",
       "SourceId": "CaptrsCardGamePrototype",
       "SourceType": "Discovered",
@@ -7036,6 +7070,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\map-main.png",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "map-main.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\map-main.png"
     },
     {
       "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\captrs-logo-icon.ico",
@@ -7138,6 +7189,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\sample-data\\weather.json"
+    },
+    {
+      "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\svg\\triangle-board.svg",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "svg/triangle-board.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\svg\\triangle-board.svg"
+    },
+    {
+      "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\svg\\triangle-element.svg",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "svg/triangle-element.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\svg\\triangle-element.svg"
     }
   ]
 }

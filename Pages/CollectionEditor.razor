@@ -21,7 +21,6 @@
 </MudPaper>
 
 <MudStack Row="true">
-    
     <MudDropContainer T="IDropTableItem" 
                       Items="_cards" 
                       ItemsSelector="@((item,dropzone) => item.Selector == dropzone)"
@@ -34,7 +33,14 @@
                          @bind-SelectedItem="@selectedItem" 
                          @bind-SelectedValue="@selectedValue" 
                          Class="d-flex flex-column mud-height-full">
-                    <MudListSubheader>Card Collection</MudListSubheader>
+                    <MudListSubheader>
+                        <MudStack Row="true">
+                            <MudText Typo="Typo.inherit">Card Collection</MudText>
+                            <MudSpacer/>
+                            <MudText Typo="Typo.inherit" Style="font-style: italic">Drag and Drop To Reorder</MudText>
+                        </MudStack>
+                        
+                    </MudListSubheader>
                     <MudDropZone T="IDropTableItem" 
                                  Identifier="@_dropzoneName" 
                                  Class="flex-grow-1" 

@@ -17,7 +17,9 @@
                 </CardHeaderContent>
                 <CardHeaderActions>
                     <MudTooltip Text="Send To Card Editor">
-                        <MudIconButton OnClick="@onSettingsClickCallback" Icon="@Icons.Material.Filled.Settings" Color="Color.Default"/>
+                        <MudIconButton OnClick="@onSettingsClickCallback" 
+                                       Icon="@Icons.Material.Filled.Settings" 
+                                       Color="Color.Default"/>
                     </MudTooltip>
                 </CardHeaderActions>
             </MudCardHeader>
@@ -42,12 +44,13 @@
             </MudCardContent>
             <MudCardActions>
                 <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
-                <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                <MudTooltip Text="Display Map">
+                    <MudIconButton Icon="@Icons.Material.Filled.Map" Color="Color.Default" OnClick="OnDisplayMapClicked" />
+                </MudTooltip>
             </MudCardActions>
             
         </MudCard>
     </MudContainer>
-    
 }
 
 
@@ -70,9 +73,20 @@
     
     [Parameter]
     public EventCallback<MouseEventArgs> onSettingsClickCallback { get; set; }
+
+    [Parameter]
+    public string mapFilename { get; set; } = "img/map-main.png";
+
+    [Parameter]
+    public EventCallback<string> mapDisplayRequested { get; set; }
     
     private void OnStateChangedEvent() {
         StateHasChanged();
+    }
+    
+    private async Task OnDisplayMapClicked()
+    {
+        await mapDisplayRequested.InvokeAsync(mapFilename);
     }
     
     
