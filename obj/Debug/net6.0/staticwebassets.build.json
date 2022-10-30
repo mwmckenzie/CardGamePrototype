@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E4mp/pwJq89ucWqTZNJ6U4oXqryzwU9AjbsHtkQc0Rw=",
+  "Hash": "4q0tR+HRou+hdiJ9kjWok2k0wWJueQ2ychKqaPp1VnQ=",
   "Source": "CaptrsCardGamePrototype",
   "BasePath": "/",
   "Mode": "Root",
@@ -6968,6 +6968,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\data\\lookups\\reportCard01_04.json"
+    },
+    {
+      "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\SeirModelParams_PSA Game_Test01_2022-09-19-1836.json",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "data/SeirModelParams_PSA Game_Test01_2022-09-19-1836.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\data\\SeirModelParams_PSA Game_Test01_2022-09-19-1836.json"
     },
     {
       "Identity": "D:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\testTextInput01.json",

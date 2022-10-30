@@ -1,0 +1,123 @@
+@page "/SeirParamsView"
+@using CaptrsCardGamePrototype.Services
+@using CaptrsCardGamePrototype.Models
+@using Microsoft.AspNetCore.Components
+
+@inject SeirDataService _seirDataService
+@inject HttpClient _http
+
+@* <MudPaper Class="mt-2 mb-2 pa-2"> *@
+@*         @foreach (var kvp in _seirParams.labelsAndValues()) { *@
+@*                 <MudText Typo="Typo.subtitle2">@kvp.Key</MudText> *@
+@*                 <MudText Typo="Typo.h6">@kvp.Value.ToString("N4")</MudText> *@
+@*         } *@
+@* </MudPaper> *@
+
+<MudGrid>
+    <MudItem xs="8">
+        <MudTable Items="@_seirDataService.labeledSeirParams" 
+                  Dense="@dense" Hover="@hover" Bordered="@bordered" 
+                  Striped="@striped" RowsPerPage="50"
+                  Filter="new Func<LabeledDoubles, bool>(FilterFunc1)"
+                  @bind-SelectedItem="selectedItem">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">All Parameters</MudText>
+                <MudSpacer/>
+                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start"
+                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
+                </MudTextField>
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh>Parameter</MudTh>
+                <MudTh Style="text-align: center">Value</MudTh>
+                <MudTh Style="text-align: center">Duration</MudTh>
+                <MudTh Style="text-align: center">Per 100k</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Label">@context.label</MudTd>
+                <MudTd DataLabel="Value">@context.value.ToString("N4")</MudTd>
+                
+                @if (@context.label.Contains("rate", StringComparison.OrdinalIgnoreCase)) {
+                    @if (context.value != 0d) {
+                        <MudTd Style="text-align: center" DataLabel="Value">@((1f / context.value).ToString("N1"))</MudTd>
+                    }
+                    else {
+                        <MudTd Style="text-align: center" DataLabel="Value">-</MudTd>
+                    }
+                }
+                else {
+                    <MudTd DataLabel="Value">@string.Empty</MudTd>
+                }
+                
+                @if (@context.label.Contains("proportion", StringComparison.OrdinalIgnoreCase)) {
+                    @if (context.value != 0d) {
+                        <MudTd Style="text-align: center" DataLabel="Value">@((100000d * context.value).ToString("N1"))</MudTd>
+                    }
+                    else {
+                        <MudTd Style="text-align: center" DataLabel="Value">-</MudTd>
+                    }
+                }
+                else {
+                    <MudTd DataLabel="Value">@string.Empty</MudTd>
+                }
+            </RowTemplate>
+            <PagerContent>
+                <MudTablePager/>
+            </PagerContent>
+        </MudTable>
+    </MudItem>
+    
+    <MudItem xs="4">
+        <ProgramFilterBar/>
+    </MudItem>
+</MudGrid>
+
+<div class="d-flex flex-wrap mt-4" style="margin-bottom: 1em">
+    <MudSwitch @bind-Checked="@hover" Color="Color.Primary">Hover</MudSwitch>
+    <MudSwitch @bind-Checked="@dense" Color="Color.Secondary">Dense</MudSwitch>
+    <MudSwitch @bind-Checked="@striped" Color="Color.Tertiary">Striped</MudSwitch>
+    <MudSwitch @bind-Checked="@bordered" Color="Color.Warning">Bordered</MudSwitch>
+    <MudSpacer/>
+    <div style="min-width:200px;">
+        @if (selectedItem is not null) {
+            <MudText Inline="true" Class="align-self-center">Selected: @selectedItem.label</MudText>
+        }
+    </div>
+</div>
+
+
+
+@code {
+
+        private SeirParams _seirParams = new();
+    
+        private bool dense;
+        private bool hover = true;
+        private bool striped;
+        private bool bordered;
+    
+        private string _searchString = "";
+        private LabeledDoubles? selectedItem { get; set; }
+
+        protected override async Task OnInitializedAsync() {
+                await base.OnInitializedAsync();
+                await _seirDataService.Init(_http);
+
+                _seirParams = _seirDataService.seirParams;
+        }
+    
+    private bool FilterFunc1(LabeledDoubles param) {
+        return FilterFunc(param, _searchString);
+    }
+
+    private bool FilterFunc(LabeledDoubles param, string searchString) {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (param.label is not null) {
+            if (param.label.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        return false;
+    }
+
+}

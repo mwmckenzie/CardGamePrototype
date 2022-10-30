@@ -814,3 +814,4 @@ D:\CSharp\CaptrsCardGamePrototype\obj\Debug\net6.0\CaptrsCardGamePrototype.dll
 D:\CSharp\CaptrsCardGamePrototype\obj\Debug\net6.0\refint\CaptrsCardGamePrototype.dll
 D:\CSharp\CaptrsCardGamePrototype\obj\Debug\net6.0\CaptrsCardGamePrototype.pdb
 D:\CSharp\CaptrsCardGamePrototype\obj\Debug\net6.0\ref\CaptrsCardGamePrototype.dll
+D:\CSharp\CaptrsCardGamePrototype\bin\Debug\net6.0\wwwroot\data\SeirModelParams_PSA Game_Test01_2022-09-19-1836.json
