@@ -37,4 +37,28 @@ public class CardBaseObj : BaseInfoObj, IDropTableItem {
 
     public string Selector { get; set; } = "1";
     public int Order { get; set; }
+
+    public CardBaseObj Copy() {
+        
+        var card = new CardBaseObj {
+            Name = name ?? string.Empty,
+            Selector = Selector,
+            Order = -1,
+            name = name,
+            displayName = displayName,
+            isValid = isValid,
+            id = Guid.NewGuid().ToString(),
+            url = url,
+            icon = icon,
+            cardType = cardType,
+            cardTitle = cardTitle,
+            isSpecialText = isSpecialText,
+        };
+        
+        foreach (var textContentSection in textContentSections) {
+            card.textContentSections.Add(textContentSection);
+        }
+        
+        return card;
+    }
 }

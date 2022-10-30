@@ -1,7 +1,9 @@
 ﻿@using CaptrsCardGamePrototype.Helpers
 @inherits LayoutComponentBase
 
-<MudThemeProvider />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&family=Open+Sans&family=Lato">
+
+<MudThemeProvider Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -9,13 +11,15 @@
     <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
+        <MudText Typo="Typo.h5" Style="font-weight: bold">CAPTRS</MudText>
+        <MudText Typo="Typo.h5" Class="mx-2">Web Prototypes</MudText>
         <MudIconButton Icon="@StaticRefs.captrsIcon" Color="Color.Inherit" Link="https://captrs.org/" Target="_blank" />
         @* <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank" /> *@
         @* <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor/" Target="_blank" /> *@
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
         <MudDrawerHeader>
-            <MudText Typo="Typo.h6" Class="my-auto">Game Prototypes</MudText>
+            <MudText Typo="Typo.h6" Class="my-auto">Web Elements</MudText>
         </MudDrawerHeader>
         <MudDivider DividerType="DividerType.Middle"/>
         <NavMenu />
@@ -40,4 +44,12 @@
     {
         _drawerOpen = !_drawerOpen;
     }
+    
+    private MudTheme _theme = new() {
+        Typography = new() {
+            Default = new() {
+                FontFamily = new[] { "Open Sans", "Helvetica", "Arial", "sans-serif" }
+            }
+        }
+    };
 }

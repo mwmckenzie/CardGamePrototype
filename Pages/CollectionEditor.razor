@@ -7,6 +7,7 @@
 
 @inject CardDataService _cardDataService
 @inject NavigationManager _navigationManager
+@inject ISnackbar _snackbar
 
 <PageTitle>Card Collection Editor</PageTitle>
 
@@ -29,7 +30,10 @@
                       Class="d-flex flex-wrap flex-grow-1">
         <ChildContent>
             <MudPaper Class="ma-4 flex-grow-1">
-                <MudList Clickable="true" @bind-SelectedItem="@selectedItem" @bind-SelectedValue="@selectedValue" Class="d-flex flex-column mud-height-full">
+                <MudList Clickable="true" 
+                         @bind-SelectedItem="@selectedItem" 
+                         @bind-SelectedValue="@selectedValue" 
+                         Class="d-flex flex-column mud-height-full">
                     <MudListSubheader>Card Collection</MudListSubheader>
                     <MudDropZone T="IDropTableItem" 
                                  Identifier="@_dropzoneName" 
@@ -39,7 +43,7 @@
             </MudPaper>
         </ChildContent>
         <ItemRenderer>
-            <MudListItem Value="@context" IconColor="Color.Primary" Icon="@StaticRefs.captrsIcon" Text="@($"{context.Name}")"/> 
+            <MudListItem Value="@context" Avatar="@StaticRefs.captrsIcon" Text="@($"{context.Name}")"/> 
         </ItemRenderer>
     </MudDropContainer>
     
@@ -64,7 +68,7 @@
                     <MudText Typo="Typo.h6">@selectedCardName</MudText>
                 </MudStack>
             </MudListSubheader>
-            <MudListItem Text="Send To Editor" 
+            <MudListItem Text="Send To Editor"
                          IconColor="Color.Info" 
                          Disabled="@selectedCardIsInvalid"
                          Icon="@Icons.Material.Filled.EditNote" 
@@ -145,12 +149,20 @@
         if (selectedValue is not CardBaseObj card)
             return;
         _cardDataService.editorCard = card;
+        AddSnackBarUpdate($"[{card}] Card Sent to Editor!");
     }
 
     private void NavigateToEditor() {
         _navigationManager.NavigateTo("CardEditor");
     }
     
-    
+    private void AddSnackBarUpdate(string text) {
+        _snackbar.Clear();
+        _snackbar.Add(text, Severity.Success, config => {
+            config.CloseAfterNavigation = true;
+            config.ShowCloseIcon = true;
+            config.Onclick = _ => Task.CompletedTask;
+        });
+    }
     
 }

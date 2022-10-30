@@ -147,8 +147,10 @@
     }
 
     private void AddCardToDataService() {
-        _cardDataService.cards.Add(_cardObj);
-        AddSnackBarUpdate($"[{_cardObj}] Card Added To Collection!");
+        var newCard = _cardDataService.cards.Contains(_cardObj) ? _cardObj.Copy() : _cardObj;
+        newCard.Order = _cardDataService.cards.Count + 1;
+        _cardDataService.cards.Add(newCard);
+        AddSnackBarUpdate($"[{newCard}] Card Added To Collection!");
         ResetCard();
     }
     
