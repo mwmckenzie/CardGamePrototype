@@ -14,7 +14,7 @@
 @* </MudPaper> *@
 
 <MudGrid>
-    <MudItem xs="8">
+    <MudItem xs="12">
         <MudTable Items="@_seirDataService.labeledSeirParams" 
                   Dense="@dense" Hover="@hover" Bordered="@bordered" 
                   Striped="@striped" RowsPerPage="50"
@@ -32,12 +32,16 @@
                 <MudTh Style="text-align: center">Value</MudTh>
                 <MudTh Style="text-align: center">Duration</MudTh>
                 <MudTh Style="text-align: center">Per 100k</MudTh>
+                <MudTh Style="text-align: center">Per Day</MudTh>
             </HeaderContent>
             <RowTemplate>
                 <MudTd DataLabel="Label">@context.label</MudTd>
-                <MudTd DataLabel="Value">@context.value.ToString("N4")</MudTd>
+                <MudTd Style="text-align: center" DataLabel="Value">@context.value.ToString("N4")</MudTd>
                 
-                @if (@context.label.Contains("rate", StringComparison.OrdinalIgnoreCase)) {
+                @if (context.label.Contains("rate", StringComparison.OrdinalIgnoreCase) 
+                     && !context.label.Contains("transmission", StringComparison.OrdinalIgnoreCase) 
+                     && !context.label.Contains("testing", StringComparison.OrdinalIgnoreCase) 
+                     && !context.label.Contains("false", StringComparison.OrdinalIgnoreCase)) {
                     @if (context.value != 0d) {
                         <MudTd Style="text-align: center" DataLabel="Value">@((1f / context.value).ToString("N1"))</MudTd>
                     }
@@ -49,7 +53,9 @@
                     <MudTd DataLabel="Value">@string.Empty</MudTd>
                 }
                 
-                @if (@context.label.Contains("proportion", StringComparison.OrdinalIgnoreCase)) {
+                @if (context.label.Contains("proportion", StringComparison.OrdinalIgnoreCase) || 
+                     context.label.Contains("testing", StringComparison.OrdinalIgnoreCase) || 
+                     context.label.Contains("false", StringComparison.OrdinalIgnoreCase)) {
                     @if (context.value != 0d) {
                         <MudTd Style="text-align: center" DataLabel="Value">@((100000d * context.value).ToString("N1"))</MudTd>
                     }
@@ -60,6 +66,18 @@
                 else {
                     <MudTd DataLabel="Value">@string.Empty</MudTd>
                 }
+                @if (context.label.Contains("transmission", StringComparison.OrdinalIgnoreCase)) {
+                                    @if (context.value != 0d) {
+                                        <MudTd Style="text-align: center" DataLabel="Value">@(context.value.ToString("N1"))</MudTd>
+                                    }
+                                    else {
+                                        <MudTd Style="text-align: center" DataLabel="Value">-</MudTd>
+                                    }
+                                }
+                                else {
+                                    <MudTd DataLabel="Value">@string.Empty</MudTd>
+                                }
+                
             </RowTemplate>
             <PagerContent>
                 <MudTablePager/>
