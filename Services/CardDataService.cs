@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Text.Json;
 using CaptrsCardGamePrototype.Helpers;
 using CaptrsCardGamePrototype.Models;
 
@@ -18,6 +19,9 @@ public class CardDataService {
 
     public List<string> acuteSymptoms { get; set; } = new();
     public Pathogen? pathogen { get; set; }
+
+    private ApiHelper _apiHelper = new();
+    public string? apiReponseText;
 
     public async Task Init(HttpClient http) {
         _http = http;
@@ -76,5 +80,19 @@ public class CardDataService {
             dict.Add(key, value);
         }
         return dict;
+    }
+
+    public async Task LoadPathogenFromLocal() {
+        await BuildPathogen("data/Influenza_A_H9N2.json");
+    }
+
+    public async Task LoadPathogenFromWeb(string url) {
+        //await BuildPathogen("url");
+        _apiHelper.uri = url;
+        await _apiHelper.DoRequest();
+        if (!string.IsNullOrWhiteSpace(_apiHelper.responseBody) ) {
+            apiReponseText = _apiHelper.responseBody;
+            pathogen = JsonSerializer.Deserialize<Pathogen>(apiReponseText);
+        }
     }
 }

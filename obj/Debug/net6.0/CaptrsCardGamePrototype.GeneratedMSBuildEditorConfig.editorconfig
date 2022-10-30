@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CSharp/CaptrsCardGamePrototype/Pages/ApiTestPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBpVGVzdFBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CSharp/CaptrsCardGamePrototype/Pages/CardEditor.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZEVkaXRvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/CSharp/CaptrsCardGamePrototype/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Pages/PathogenEditor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aG9nZW5FZGl0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CSharp/CaptrsCardGamePrototype/Pages/SeirParamsView.razor]
@@ -68,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/CSharp/CaptrsCardGamePrototype/Shared/PathogenDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhdGhvZ2VuRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CSharp/CaptrsCardGamePrototype/Shared/PathogenEditSections.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhdGhvZ2VuRWRpdFNlY3Rpb25zLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CSharp/CaptrsCardGamePrototype/Shared/PathogenSideView.razor]

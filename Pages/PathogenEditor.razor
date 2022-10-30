@@ -1,0 +1,72 @@
+@page "/PathogenEditor"
+@using CaptrsCardGamePrototype.Models
+@using CaptrsCardGamePrototype.Services
+
+@inject CardDataService _cardDataService
+@inject HttpClient _http
+
+<MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Editor</MudText>
+
+<MudPaper Class="pa-4 ma-4">
+    <MudStack Row="true">
+        <MudText Class="my-4" Typo="Typo.h6" Color="Color.Primary">Reload Pathogen From Local File</MudText>
+        <MudSpacer/>
+        <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="TryLoadPathogenFromLocal">Reload</MudButton>
+    </MudStack>
+</MudPaper>
+
+<MudPaper Class="pa-4 ma-4">
+    <MudStack Row="true">
+        <MudText Class="my-2" Typo="Typo.h6" Color="Color.Primary">Reload Pathogen From Web API</MudText>
+        <MudSpacer/>
+        <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="TryLoadPathogenFromWeb">Reload</MudButton>
+    </MudStack>
+    <MudTextField @bind-Value="@url" Variant="Variant.Outlined" Label="URL"/>
+</MudPaper>
+
+
+@* @if (!string.IsNullOrWhiteSpace(_cardDataService.apiReponseText)) { *@
+@*     <MudText>@_cardDataService.apiReponseText</MudText> *@
+@* } *@
+
+
+
+@if (pathogen is not null) {
+    <PathogenEditSections @bind-pathogen="@pathogen" acuteSymptomsList="@_cardDataService.acuteSymptoms"/>
+}
+
+@code {
+    
+    [Parameter] 
+    public Pathogen? pathogen { get; set; }
+    
+    private string? url = "https://raw.githubusercontent.com/mwmckenzie/vigilant-carnival/main/json/Influenza_A_H9N2_02.json";
+    
+    protected override async Task OnInitializedAsync() {
+        await base.OnInitializedAsync();
+        await _cardDataService.Init(_http);
+        
+        pathogen = _cardDataService.pathogen;
+        if (pathogen is null) {
+            return;
+        }
+        pathogen.url = "https://en.wikipedia.org/wiki/Influenza_A_virus_subtype_H9N2";
+    }
+
+    
+
+    private async Task TryLoadPathogenFromWeb() {
+        if (string.IsNullOrWhiteSpace(url)) {
+            return;
+        }
+        await _cardDataService.LoadPathogenFromWeb(url);
+        pathogen = _cardDataService.pathogen;
+        StateHasChanged();
+    }
+    
+    private async Task TryLoadPathogenFromLocal() {
+        await _cardDataService.LoadPathogenFromLocal();
+        pathogen = _cardDataService.pathogen;
+        StateHasChanged();
+    }
+}

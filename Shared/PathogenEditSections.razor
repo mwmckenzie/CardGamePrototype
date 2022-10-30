@@ -1,0 +1,132 @@
+@using Microsoft.AspNetCore.Components
+@using CaptrsCardGamePrototype.Models
+<MudPaper Class="pa-4">
+        <MudPaper Class="pa-4 mb-4">
+            
+            <MudTextField @bind-Value="@pathogen.typeName" Label="Type Name" Variant="Variant.Outlined"/> 
+            <MudStack Row="true" Spacing="3">
+                <MudIcon Icon="@Icons.Material.Filled.Link"></MudIcon>
+                <MudTextField @bind-Value="@pathogen.url" Label="URL" Variant="Variant.Outlined"/> 
+                    
+                </MudStack>
+        </MudPaper>
+
+        <MudPaper Class="pa-4 mb-4">
+            <MudText Color="Color.Primary" Typo="Typo.subtitle2">Onset</MudText>
+            <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Filled.Timer"></MudIcon>
+                <MudTextField @bind-Value="@pathogen.onset" Label="Onset (Days)" Variant="Variant.Outlined"/>
+            </MudStack>
+
+            <MudText class="mt-4" Color="Color.Primary" Typo="Typo.subtitle2">Duration</MudText>
+            <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Filled.Timelapse"></MudIcon>
+                <MudTextField @bind-Value="@pathogen.duration" Label="Duration (Days)" Variant="Variant.Outlined"/>
+            </MudStack>
+        </MudPaper>
+            
+        <MudPaper Class="pa-4  mb-4">
+            <MudText Color="Color.Primary" Typo="Typo.subtitle2">Acute Symptoms</MudText>
+            <MudTextField @bind-Value="tempAcuteSymp" 
+                          Class="my-2"
+                          Label="Add New Freeform Text" 
+                          Variant="Variant.Outlined" 
+                          Adornment="Adornment.End"
+                          AdornmentColor="Color.Tertiary"
+                          AdornmentIcon="@Icons.Material.Filled.Add"
+                          OnAdornmentClick="AddTextToAcuteSymp"/> 
+            
+            @if (acuteSymptomsList is not null) {
+                <MudSelect T="string" 
+                           Class="my-2"
+                           Label="Loaded Acute Symptoms List" 
+                           Variant="Variant.Outlined" 
+                           AnchorOrigin="Origin.BottomCenter"
+                           @bind-Value="tempAcuteSympSelect"
+                           Adornment="Adornment.End"
+                           AdornmentColor="Color.Tertiary"
+                           AdornmentIcon="@Icons.Material.Filled.Add"
+                           OnAdornmentClick="AddSelectToAcuteSymp">
+                    @foreach (var symptom in acuteSymptomsList) {
+                        <MudSelectItem Value="@symptom" />
+                    }
+                </MudSelect>
+            }
+            
+            
+            @foreach (var symptom in pathogen.acuteSymptoms) {
+                <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                    <MudIconButton Icon="@Icons.Filled.Clear" OnClick="() => pathogen.acuteSymptoms.Remove(symptom)"/>
+                    <MudText class="mr-4" Typo="Typo.h6">@symptom</MudText>
+                </MudStack>
+            }
+        </MudPaper>
+        
+        
+         
+         <MudPaper Class="pa-4  mb-4">
+             <MudText Color="Color.Primary" Typo="Typo.subtitle2">Reservoir</MudText>
+             <MudTextField @bind-Value="tempReservoir" 
+                           Class="my-2"
+                           Label="Add New Freeform Text" 
+                                       Variant="Variant.Outlined" 
+                                       Adornment="Adornment.End"
+                                       AdornmentColor="Color.Tertiary"
+                                       AdornmentIcon="@Icons.Material.Filled.Add"
+                                       OnAdornmentClick="AddTextToReservoir"/> 
+             @foreach (var detail in pathogen.reservoirDetails) {
+                 <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+                     <MudIconButton Icon="@Icons.Filled.Clear" OnClick="() => pathogen.reservoirDetails.Remove(detail)"/>
+                     <MudText class="mr-4" Typo="Typo.h6">@detail</MudText>
+                 </MudStack>
+             }
+         </MudPaper>
+         
+    </MudPaper>
+
+@code {
+    
+    [Parameter] 
+    public Pathogen? pathogen { get; set; }
+
+    [Parameter]
+    public List<string> acuteSymptomsList { get; set; }
+    
+    private string? tempAcuteSymp;
+    private string? tempAcuteSympSelect;
+    private string? tempReservoir;
+    private string? tempReservoirSelect;
+    
+    [Parameter] 
+    public EventCallback<Pathogen> pathogenChanged { get; set; }
+    
+    private void AddTextToAcuteSymp() {
+        if (string.IsNullOrWhiteSpace(tempAcuteSymp) || pathogen.acuteSymptoms.Contains(tempAcuteSymp)) {
+            return;
+        }
+        pathogen.acuteSymptoms.Add(tempAcuteSymp);
+        tempAcuteSymp = null;
+    }
+    private void AddSelectToAcuteSymp() {
+        if (string.IsNullOrWhiteSpace(tempAcuteSympSelect) || pathogen.acuteSymptoms.Contains(tempAcuteSympSelect)) {
+            return;
+        }
+        pathogen.acuteSymptoms.Add(tempAcuteSympSelect);
+    }
+    
+    private void AddTextToReservoir() {
+        if (string.IsNullOrWhiteSpace(tempReservoir) || pathogen.reservoirDetails.Contains(tempReservoir)) {
+            return;
+        }
+        pathogen.reservoirDetails.Add(tempReservoir);
+        tempReservoir = null;
+    }
+    
+    private void AddSelectToReservoir() {
+        if (string.IsNullOrWhiteSpace(tempReservoirSelect) || pathogen.reservoirDetails.Contains(tempReservoirSelect)) {
+            return;
+        }
+        pathogen.reservoirDetails.Add(tempReservoirSelect);
+    }
+    
+}
