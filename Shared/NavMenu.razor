@@ -1,4 +1,6 @@
 ﻿
+<MudPaper Height="100%" Width="250px" Class="d-flex flex-column flex-grow-1 align-content-space-between py-3" 
+          Elevation="0">
 <MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
     <MudNavLink Href="CardEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.EditNote">Card Editor</MudNavLink>
@@ -7,3 +9,19 @@
     <MudNavLink Href="PathogenEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Edit">Pathogen Editor</MudNavLink>
     @* <MudNavLink Href="ApiTestPage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.NetworkCheck">API Test</MudNavLink> *@
 </MudNavMenu>
+<MudElement Class="pa-4 mt-auto">
+    <MudSwitch @bind-Checked="@isDarkMode" Color="Color.Primary" 
+               T="bool" Label="Toggle Light/Dark Mode"
+               @onclick="ToggleDarkMode"/>
+</MudElement>
+</MudPaper>
+
+@code {
+
+    [Parameter] 
+    public bool isDarkMode { get; set; }
+    
+    [Parameter]
+    public EventCallback ToggleDarkMode { get; set; }
+
+}

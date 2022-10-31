@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&family=Open+Sans&family=Lato">
 
-<MudThemeProvider Theme="_theme" />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -20,7 +20,7 @@
             <MudText Typo="Typo.h6" Class="my-auto">Web Elements</MudText>
         </MudDrawerHeader>
         <MudDivider DividerType="DividerType.Middle"/>
-        <NavMenu />
+        <NavMenu isDarkMode="@_isDarkMode" ToggleDarkMode="TryToggleDarkMode" />
     </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Medium">
@@ -48,5 +48,9 @@
         }
     };
 
+    private bool _isDarkMode;
     
+    void TryToggleDarkMode() {
+        _isDarkMode = !_isDarkMode;
+    }
 }
