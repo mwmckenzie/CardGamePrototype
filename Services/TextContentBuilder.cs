@@ -30,6 +30,6 @@ public class TextContentBuilder {
     
     private string WrapTextInDiv(string text) {
         return
-            $"<span style=\"color: rebeccapurple;font-weight: bold\">{text}</span>";
+            $"<span style=\"color: red;font-weight: bold\">{text}</span>";
     }
 }
