@@ -7,12 +7,21 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "Azure.Core.dll": "sha256-fW2jAmJmv8YHFxjx4YJKAoPatRZucamydE5137aZOcE=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-hSXzdQFPBtfxBs3B2TFaykHyx2Mgqh21anN\/Gx+VKSo=",
       "Microsoft.AspNetCore.Components.dll": "sha256-BikLdQx36rYsSVwqNFVsuDwW4Soedlr\/SnAFSy5tjW8=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-92y2h3G1nlPZuHI7ZX3WI+lOUF3ipefJgi4gLswtgeQ=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-wFR5nNYDOAhByftSWmoRrc99IFbBpslEPbFsMbsArsU=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-b6LUYmWO9wtQWNeCNXsoKoTXRM3AgcsBqP624DvGAY8=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-6BDnDt5BFfiRHMSpAy2U5rQKU18nh0XpeCGvc1FkZ2M=",
+      "Microsoft.Azure.Cosmos.Client.dll": "sha256-F8CI0MaGkKQmxzGteyeZElnb9UmSKa+kDWoH22MDnCg=",
+      "Microsoft.Azure.Cosmos.Core.dll": "sha256-fCxvaNT1OPvurEQlePYzCOW74z6fcTpK2Ld+5+5eZb0=",
+      "Microsoft.Azure.Cosmos.Direct.dll": "sha256-K8TDc80hFWo89JCdl3CtNJ\/uNOVrPCGxAq1ycZc78K0=",
+      "Microsoft.Azure.Cosmos.Serialization.HybridRow.dll": "sha256-K7ZNe63Y++o0R7lrYIrPKHipkiAU2ppJ1TnWJMIbIbw=",
+      "Microsoft.Bcl.AsyncInterfaces.dll": "sha256-NktPvm6CrEWy+t6kSiltKtuBb\/yT9TVcx4h01\/zoF+Q=",
+      "Microsoft.Bcl.HashCode.dll": "sha256-y5+O+HE1PNgSn0TwPo3hH4YjhuwltS3gYIkrSTD2QOs=",
+      "Microsoft.Extensions.Caching.Abstractions.dll": "sha256-WLcZIKlgct2nj4hpaBvZXfHorQG9DH9B\/FZ2IKePG2I=",
+      "Microsoft.Extensions.Caching.Cosmos.dll": "sha256-++tMCGGDVgy00HfyJX4jkeUnW1IEc4yPGTFrb+fBf18=",
       "Microsoft.Extensions.Configuration.dll": "sha256-c8yYhfrOBLEnOBglLTu9peXSbJDwFpuT4UQiXSv28Og=",
       "Microsoft.Extensions.Configuration.Abstractions.dll": "sha256-5Otet+KKVUjNkE\/hqcNWmt75H1K2VNuKPFagpRd6Ces=",
       "Microsoft.Extensions.Configuration.Binder.dll": "sha256-wNKhG3Ovx8jqxbscz2AALlsTLfI6GL2dyDhe63mSsoM=",
@@ -29,8 +38,16 @@
       "Microsoft.Extensions.Primitives.dll": "sha256-jOmoWSfsdQexH\/6QCA56gR1RMEqeix2iDDUBWbpAOQI=",
       "Microsoft.JSInterop.dll": "sha256-UMN0MIhXy6iiBoCH7TVNO7airH6YRx+Dtq3QNJ0b0rM=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-TNVKFxQm+ZgKzHK5rCOcAC9sMNh87Kz6N3h5jS7B\/cg=",
+      "Microsoft.Win32.SystemEvents.dll": "sha256-yklb9shrfwktYkkoEBmFqUFTLRSdzYrP6hcPilO+iFA=",
       "MudBlazor.dll": "sha256-YVtA+TtFIMp8sS2n+\/R6+\/IYJYD6\/0BHn0aZQDHb6JM=",
+      "Newtonsoft.Json.dll": "sha256-GViDVnAQuA8FMpwwB\/9uaspcQefOSU1hpfK4bC07Eds=",
+      "System.Configuration.ConfigurationManager.dll": "sha256-SyZcn69Ju8196bOWd6jbATVgq2B2BRWvy5adNMTwGUE=",
+      "System.Drawing.Common.dll": "sha256-mNB+ax59NkGoYIo2Cz3Cc\/6KD3iSa24eX2eaegdNSR8=",
       "System.IO.Pipelines.dll": "sha256-6+E55JXedimdw1c1bDtVg4K7XuWjVWVTifH8QpfzXSY=",
+      "System.Memory.Data.dll": "sha256-KTyl2GNY+yzgDaAsY+78s0Ron8DGNrYcl8PxsVqAqlE=",
+      "System.Security.Cryptography.ProtectedData.dll": "sha256-0YZFPuu6IeGakOT+oWwRw99Z7ZYQIBxaPG1ja5hk2EA=",
+      "System.Security.Permissions.dll": "sha256-YgaMD2v\/sOtOwcakWhZ4TK7nVl9sVATYNCCJ9P9LNxI=",
+      "System.Windows.Extensions.dll": "sha256-gQ6HZ9AtcK8XO8M8wQSP8xp98BX9Rs9COjCcyJxQ3Gk=",
       "Microsoft.CSharp.dll": "sha256-adCs59jXuFGmtyjMTyWaNaa2vMMxs8lP4OPdOktevIM=",
       "Microsoft.VisualBasic.Core.dll": "sha256-jskDMBxgkm7uy2i\/WTbKbCMF8OjxJ5oddbfJJoN6Pvo=",
       "Microsoft.VisualBasic.dll": "sha256-lfQlpb42VjujEtG3HVoN9H31CjedNMytpYZlowc+CCc=",
@@ -197,16 +214,16 @@
       "mscorlib.dll": "sha256-SboUbkX8s5RVQGtnN5Q67MBZW0I\/P3aeEMENJq8gv8M=",
       "netstandard.dll": "sha256-lZ8L5iiSghlvyt2ie2YdBYAtJbVa4mvpvBX3W9ihjLc=",
       "System.Private.CoreLib.dll": "sha256-jECkJy2Sjpl59QEL3nO3p8nwKGXvnJpXaKQF\/+MTw04=",
-      "CaptrsCardGamePrototype.dll": "sha256-s0WBU9MemxQqBl7DleRi\/TXhODcHTbDki9+AscdJ+7g="
+      "CaptrsCardGamePrototype.dll": "sha256-ci0IHPwWaisdF4JgxoEoxTV8c7xeHuP8BZH1eJnrFjo="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "CaptrsCardGamePrototype.pdb": "sha256-b1JvgAeDLjuyqmy3mKJ747D86J4vaQ6CvLo0A7esaL8="
+      "CaptrsCardGamePrototype.pdb": "sha256-Bd1GFrbJHh7+JqP9hCqIOvdaD2xhkFGXVKMZ6RxWE7s="
     },
     "runtime": {
-      "dotnet.6.0.10.ab6o20rtby.js": "sha256-KtM3Wrooexmrt5NmqvZfWoDPtNIe6wZqLopR6ToqUPg=",
+      "dotnet.6.0.10.17f8b08lbo.js": "sha256-KtM3Wrooexmrt5NmqvZfWoDPtNIe6wZqLopR6ToqUPg=",
       "dotnet.timezones.blat": "sha256-MAD3ryDxIcf60DIJlI9AVB+F2QC4oWJU0p02C7K2LpU=",
       "dotnet.wasm": "sha256-rbp\/Kz57XpMKaVoap0YLS3sN1D7cPKdTFCpoCR2YrFg=",
       "icudt.dat": "sha256-Zuq0dWAsBm6\/2lSOsz7+H9PvFaRn61KIXHMMwXDfvyE=",

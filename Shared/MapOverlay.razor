@@ -3,7 +3,7 @@
 <MudOverlay @bind-Visible="@mapOverlayVM.mapOverlayIsVisible" DarkBackground="true" AutoClose="true">
                 <MudImage ObjectFit="ObjectFit.Fill" 
                           ObjectPosition="ObjectPosition.Center" 
-                          Style="height:  60vh" Src="@mapOverlayVM.mapFilename" 
+                          Style="max-height:  75vh; max-width: 75vw" Src="@mapOverlayVM.mapFilename" 
                           Alt="Game Map"  
                           Elevation="25"/>
                 </MudOverlay>

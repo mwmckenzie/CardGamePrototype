@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj": {}
+    "F:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj": {}
   },
   "projects": {
-    "D:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj": {
+    "F:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj",
+        "projectUniqueName": "F:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj",
         "projectName": "CaptrsCardGamePrototype",
-        "projectPath": "D:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj",
+        "projectPath": "F:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj",
         "packagesPath": "C:\\Users\\Matt\\.nuget\\packages\\",
-        "outputPath": "D:\\CSharp\\CaptrsCardGamePrototype\\obj\\",
+        "outputPath": "F:\\CSharp\\CaptrsCardGamePrototype\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[6.0.7, )"
             },
+            "Microsoft.Extensions.Caching.Cosmos": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
             "MudBlazor": {
               "target": "Package",
               "version": "[6.0.13, )"
@@ -70,6 +74,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.10, 6.0.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

@@ -1,0 +1,49 @@
+@page "/PathogenDbView"
+@using CaptrsCardGamePrototype.Models
+
+@inject HttpClient _http
+
+<MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database</MudText>
+
+@if (_pathogens is null)
+{
+    <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database Not Found</MudText>
+}
+else
+{
+    @if (_pathogens.Count == 0)
+    {
+        <MudText Class="pa-4 ma-4" Typo="Typo.h3">LOADING DATABASE</MudText>
+        <MudProgressLinear Color="Color.Secondary" Indeterminate="true"/>
+    }
+    else
+    {
+        @foreach (var pathogen in _pathogens)
+        {
+            <PathogenDetails pathogen="pathogen"/>
+            <MudDivider Class="my-6" DividerType="DividerType.Middle" Light="true"/>
+        }
+
+    }
+}
+
+@code {
+
+    private const string ServiceEndpoint = 
+        "https://pathogensapi.azurewebsites.net/api/pathogen?code=cdtNGBg2z0nHTUzTzEAxHqVuIsCyOnmZEULRaguOPvfYAzFus8dMCQ==";
+    
+    private List<Pathogen>? _pathogens;
+    private Pathogen _editItem = new();
+    private string _editRowStyle = "none";
+    private string? _newItemName;
+ 
+    protected override async Task OnInitializedAsync()
+    {
+        _pathogens = new();
+        await GetTodoItems();
+    }
+
+    private async Task GetTodoItems() => 
+        _pathogens = await _http.GetFromJsonAsync<List<Pathogen>>(ServiceEndpoint);
+
+}

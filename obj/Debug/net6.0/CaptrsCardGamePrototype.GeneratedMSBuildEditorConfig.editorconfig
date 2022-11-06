@@ -11,85 +11,89 @@ build_property.EnableTrimAnalyzer = true
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = CaptrsCardGamePrototype
 build_property.RootNamespace = CaptrsCardGamePrototype
-build_property.ProjectDir = D:\CSharp\CaptrsCardGamePrototype\
+build_property.ProjectDir = F:\CSharp\CaptrsCardGamePrototype\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\CSharp\CaptrsCardGamePrototype
+build_property.MSBuildProjectDirectory = F:\CSharp\CaptrsCardGamePrototype
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/CSharp/CaptrsCardGamePrototype/App.razor]
+[F:/CSharp/CaptrsCardGamePrototype/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Pages/ApiTestPage.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Pages/ApiTestPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBpVGVzdFBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Pages/CardEditor.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Pages/CardEditor.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZEVkaXRvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Pages/CollectionEditor.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Pages/CollectionEditor.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29sbGVjdGlvbkVkaXRvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Pages/Index.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Pages/PathogenEditor.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Pages/PathogenDbView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aG9nZW5EYlZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/CSharp/CaptrsCardGamePrototype/Pages/PathogenEditor.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aG9nZW5FZGl0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Pages/SeirParamsView.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Pages/SeirParamsView.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VpclBhcmFtc1ZpZXcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/BaseInfo.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/BaseInfo.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEJhc2VJbmZvLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/CardBase.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/CardBase.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRCYXNlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/CardBaseInfo.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/CardBaseInfo.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRCYXNlSW5mby5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/CardComponent.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/CardComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/MainLayout.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/MapOverlay.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/MapOverlay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1hcE92ZXJsYXkucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/NavMenu.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/PathogenDetails.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/PathogenDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhdGhvZ2VuRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/PathogenEditSections.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/PathogenEditSections.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhdGhvZ2VuRWRpdFNlY3Rpb25zLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/PathogenSideView.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/PathogenSideView.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhdGhvZ2VuU2lkZVZpZXcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/Shared/TestComponent.razor]
+[F:/CSharp/CaptrsCardGamePrototype/Shared/TestComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRlc3RDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CSharp/CaptrsCardGamePrototype/_Imports.razor]
+[F:/CSharp/CaptrsCardGamePrototype/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
