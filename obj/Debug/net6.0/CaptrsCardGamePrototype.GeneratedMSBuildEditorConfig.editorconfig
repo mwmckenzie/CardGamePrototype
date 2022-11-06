@@ -66,6 +66,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/CSharp/CaptrsCardGamePrototype/Shared/DataListView.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERhdGFMaXN0Vmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/CSharp/CaptrsCardGamePrototype/Shared/DataListViewItem.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERhdGFMaXN0Vmlld0l0ZW0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/CSharp/CaptrsCardGamePrototype/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

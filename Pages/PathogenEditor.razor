@@ -3,7 +3,9 @@
 @using CaptrsCardGamePrototype.Services
 
 @inject CardDataService _cardDataService
+@inject DbService _dbService
 @inject HttpClient _http
+@inject ISnackbar _snackbar
 
 <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Editor</MudText>
 
@@ -31,14 +33,22 @@
 
 
 
-@if (pathogen is not null) {
-    <PathogenEditSections @bind-pathogen="@pathogen" acuteSymptomsList="@_cardDataService.acuteSymptoms"/>
+@if (_pathogenDb.pathogenSetForEditing is not null) {
+    <PathogenEditSections @bind-pathogen="@_pathogenDb.pathogenSetForEditing" 
+                          acuteSymptomsList="@_cardDataService.acuteSymptoms"
+                          onSubmitClickCallback="TryCreateOrUpdateToDb"
+                          onCloneClickCallback="CloneAndSetToEditor"
+                          onClearClickCallback="ClearAndSetNewToEditor"/>
 }
 
 @code {
     
     [Parameter] 
     public Pathogen? pathogen { get; set; }
+
+    private PathogenDbState _pathogenDb;
+
+    private bool _isSendingObjToDb = false;
     
     private string? url = "https://raw.githubusercontent.com/mwmckenzie/vigilant-carnival/main/json/Influenza_A_H9N2_02.json";
     
@@ -51,6 +61,8 @@
             return;
         }
         pathogen.url = "https://en.wikipedia.org/wiki/Influenza_A_virus_subtype_H9N2";
+
+        _pathogenDb = _dbService.pathogenDb;
     }
 
     
@@ -68,5 +80,54 @@
         await _cardDataService.LoadPathogenFromLocal();
         pathogen = _cardDataService.pathogen;
         StateHasChanged();
+    }
+
+    private async Task TryCreateOrUpdateToDb()
+    {
+        if (_pathogenDb.pathogenSetForEditing is null || _isSendingObjToDb)
+        {
+            return;
+        }
+        _isSendingObjToDb = true;
+        AddSnackBarUpdate("Pathogen Submitted To DB", Severity.Info);
+        var response = await _pathogenDb.SubmitEditsToDbAsync();
+        _isSendingObjToDb = false;
+        if (response)
+        {
+            AddSnackBarUpdate("Pathogen Submission To DB Successful");
+        }
+        else
+        {
+            AddSnackBarUpdate("Pathogen Submission To DB Unsuccessful", Severity.Error);
+        }
+    }
+
+    private void CloneAndSetToEditor()
+    {
+        if (_pathogenDb.pathogenSetForEditing is null)
+        {
+            return;
+        }
+        _pathogenDb.pathogenSetForEditing = (Pathogen) _pathogenDb.pathogenSetForEditing.Clone();
+        _pathogenDb.pathogenSetForEditing.id = Guid.NewGuid().ToString();
+        _pathogenDb.pathogenSetForEditing.typeName += " (Copy)";
+        AddSnackBarUpdate("Pathogen Cloned and Set To Editor");
+    }
+
+    private void ClearAndSetNewToEditor()
+    {
+        _pathogenDb.BuildNewAndSetToEditor();
+        AddSnackBarUpdate("Pathogen Fields Cleared and New Pathogen Created");
+    }
+    
+    private void AddSnackBarUpdate(string text, Severity severity = Severity.Success) {
+        _snackbar.Clear();
+        _snackbar.Add(text, severity, config =>
+        {
+            config.RequireInteraction = true;
+            config.CloseAfterNavigation = true;
+            config.ShowCloseIcon = false;
+            config.Onclick = _ => Task.CompletedTask;
+        });
     }
 }

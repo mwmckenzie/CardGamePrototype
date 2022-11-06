@@ -4,6 +4,7 @@
 
 @inject HttpClient _http
 @inject DbService _dbService
+@inject ISnackbar _snackbar
 
 <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database</MudText>
 
@@ -16,12 +17,32 @@ else
 {
     @if (_pathogens is not null && _pathogens.Count > 0)
     {
-        @foreach (var pathogen in _pathogens)
-        {
-            <PathogenDetails pathogen="pathogen"/>
-            <MudDivider Class="my-6" DividerType="DividerType.Middle" Light="true"/>
+        
+        <div class="mx-auto"  style="max-width: 400px;">
+            <MudExpansionPanels>
+                
+            @foreach (var pathogen in _pathogens)
+            {
+                <MudExpansionPanel>
+                    <TitleContent>
+                        <div class="d-flex">
+                            <MudIcon Color="Color.Primary" 
+                                     Icon="@Icons.Material.Filled.Info" 
+                                     class="mr-3"/>
+                            <MudText>@pathogen.typeName</MudText>
+                        </div>
+                    </TitleContent>
+                    <ChildContent>
+                        <PathogenDetails pathogen="pathogen" 
+                                         onEditClickCallback="() => SetSelectedPathogenToEditor(pathogen)"/>
+                    </ChildContent>
+                </MudExpansionPanel>
+                @* <MudDivider Class="my-6" DividerType="DividerType.Middle" Light="true"/> *@
+            }
+        
+            </MudExpansionPanels>
+        </div>
         }
-    }
     else if (_pathogens is not null && _pathogens.Count > 0)
     {
         <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database Empty</MudText>
@@ -54,16 +75,11 @@ else
         _pathogenDb = _dbService.pathogenDb;
         _pathogens = _pathogenDb.loadedPathogens ?? new();
 
-        
-        //_pathogens = new();
-        
         await GetItems();
-        
     }
 
     private async Task GetItems()
     {
-        //UpdateLoadingState(_pathogenDb);
         if (!_pathogenDb.isLoaded)
         {
             isLoading = true;
@@ -80,8 +96,26 @@ else
         isLoaded = dbState.isLoaded;
         StateHasChanged();
     }
-       
-        
-        //_pathogens = await _http.GetFromJsonAsync<List<Pathogen>>(ServiceEndpoint);
+      
+    private void SetSelectedPathogenToEditor(Pathogen pathogen) {
+        _pathogenDb.pathogenSetForEditing = pathogen;
+        AddSnackBarUpdate($"{pathogen} Sent To Pathogen Editor!");
+    }
+    
+    private void CopySelectedPathogenToEditor(Pathogen pathogen) {
+        _pathogenDb.pathogenSetForEditing = (Pathogen) pathogen.Clone();
+        AddSnackBarUpdate($"{pathogen} Sent To Pathogen Editor!");
+    }
+
+    private void AddSnackBarUpdate(string text) {
+        _snackbar.Clear();
+        _snackbar.Add(text, Severity.Success, config =>
+        {
+            config.RequireInteraction = true;
+            config.CloseAfterNavigation = true;
+            config.ShowCloseIcon = false;
+            config.Onclick = _ => Task.CompletedTask;
+        });
+    }
 
 }

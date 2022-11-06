@@ -2,17 +2,37 @@
 
 @if (pathogen is not null) {
     <MudPaper Class="pa-4">
+        
+        <div class="d-flex flex-grow-1 justify-end mb-4">
+            <MudButtonGroup Class="" Color="Color.Primary" Variant="Variant.Filled">
+                <MudTooltip Text="Send To Pathogen Editor">
+                    <MudButton OnClick="@onEditClickCallback">Edit</MudButton>
+                </MudTooltip>
+                <MudTooltip Text="Send A Copy To Pathogen Editor">
+                    <MudButton OnClick="@onCopyClickCallback">Copy</MudButton>
+                </MudTooltip>
+                <MudTooltip Text="Not Yet Implemented">
+                    <MudButton>Delete</MudButton>
+                </MudTooltip>
+            </MudButtonGroup>
+        </div>
+        
         <MudPaper Class="pa-4 mb-4">
             <MudText Typo="Typo.h6" Color="Color.Tertiary">Pathogen Details</MudText>
             <MudText Typo="Typo.h3">@pathogen.typeName</MudText>
-            @if (!string.IsNullOrWhiteSpace(pathogen.url)) {
-                <MudStack Row="true" Spacing="3">
-                    <MudIcon Icon="@Icons.Material.Filled.Link"></MudIcon>
-                    <MudLink Href="@pathogen.url" Target="_blank" Typo="Typo.body1">@pathogen.url</MudLink>
+            @if (!string.IsNullOrWhiteSpace(pathogen.url))
+            {
+                <MudStack Class="mt-2" Row="true" Spacing="3">
+                    <MudIcon Icon="@Icons.Material.Filled.Link"/>
+                    <MudTooltip Text="@pathogen.url">
+                        <MudLink Href="@pathogen.url" Target="_blank" Typo="Typo.body1">
+                            Info/Reference
+                        </MudLink>
+                    </MudTooltip>
                 </MudStack>
             }
         </MudPaper>
-
+        
         <MudPaper Class="pa-4 mb-4">
             <MudText Color="Color.Primary" Typo="Typo.subtitle2">Onset</MudText>
             <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
@@ -26,30 +46,10 @@
                 <MudText class="mr-4" Typo="Typo.h6">@pathogen.duration</MudText>
             </MudStack>
         </MudPaper>
-        
-        @if (pathogen.acuteSymptoms is not null && pathogen.acuteSymptoms.Count > 0) {
-            <MudPaper Class="pa-4  mb-4">
-                <MudText Color="Color.Primary" Typo="Typo.subtitle2">Acute Symptoms</MudText>
-                @foreach (var symptom in pathogen.acuteSymptoms) {
-                    <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
-                        <MudIcon Icon="@Icons.Filled.Label"></MudIcon>
-                        <MudText class="mr-4" Typo="Typo.h6">@symptom</MudText>
-                    </MudStack>
-                }
-            </MudPaper>
-        }
-        
-         @if (pathogen.reservoirDetails is not null && pathogen.reservoirDetails.Count > 0) {
-             <MudPaper Class="pa-4  mb-4">
-                 <MudText Color="Color.Primary" Typo="Typo.subtitle2">Reservoir</MudText>
-                 @foreach (var detail in pathogen.reservoirDetails) {
-                     <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
-                         <MudIcon Icon="@Icons.Filled.Label"></MudIcon>
-                         <MudText class="mr-4" Typo="Typo.h6">@detail</MudText>
-                     </MudStack>
-                 }
-             </MudPaper>
-         }
+
+        <DataListView title="Acute Symptoms" textList="pathogen.acuteSymptoms"/>
+        <DataListView title="Reservoir" textList="@pathogen.reservoirDetails"/>
+
     </MudPaper>
 }
 
@@ -61,5 +61,11 @@
     
     [Parameter] 
     public EventCallback<Pathogen> pathogenChanged { get; set; }
+    
+    [Parameter]
+    public EventCallback<MouseEventArgs> onEditClickCallback { get; set; }
+    
+    [Parameter]
+    public EventCallback<MouseEventArgs> onCopyClickCallback { get; set; }
 
 }

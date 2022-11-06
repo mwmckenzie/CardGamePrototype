@@ -2,28 +2,32 @@ using System.Data.SqlTypes;
 
 namespace CaptrsCardGamePrototype.Models;
 
-public struct ConnectionInfo
-{
-    public string getAll;
-    public string get;
-    public string post;
-    public string put;
-    public string delete;
-}
-
 public abstract class DbState : BaseInfoObj
 {
     public HttpClient http { get; set; }
     public bool isLoaded { get; set; }
     public bool isLoading { get; set; }
     
-    public ConnectionInfo connectionInfo { get; set; }
-    
+    public string connectionStringBase { get; set; }
+    public string connectionStringKey { get; set; }
+
+    public string connectionString => $"{connectionStringBase}{connectionStringKey}";
+
     public DateTime lastLoaded { get; set; }
     
     private TimeSpan TimeSinceLastLoaded() => lastLoaded.Subtract(DateTime.Now);
     public int SecondsSinceLastLoaded() => TimeSinceLastLoaded().Seconds;
     public int MinutesSinceLastLoaded() => TimeSinceLastLoaded().Minutes;
+
+    protected string PutByIdConnectionString(string putId)
+    {
+        return $"{connectionStringBase}/{putId}{connectionStringKey}";
+    }
+    
+    protected string DeleteByIdConnectionString(string deleteId)
+    {
+        return $"{connectionStringBase}/{deleteId}{connectionStringKey}";
+    }
 
     public async Task GetAllFromDb()
     {
@@ -42,5 +46,9 @@ public abstract class DbState : BaseInfoObj
     }
 
     protected abstract Task<bool> GetAllDbSpecificItems();
+
+    public abstract Task BuildNewAndSetToEditor();
+    
+    public abstract Task<bool> SubmitEditsToDbAsync();
 }
 
