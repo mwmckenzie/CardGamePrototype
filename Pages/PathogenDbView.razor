@@ -1,29 +1,30 @@
 @page "/PathogenDbView"
 @using CaptrsCardGamePrototype.Models
+@using CaptrsCardGamePrototype.Services
 
 @inject HttpClient _http
+@inject DbService _dbService
 
 <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database</MudText>
 
-@if (_pathogens is null)
+@if (isLoading)
 {
-    <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database Not Found</MudText>
+    <MudText Class="pa-4 ma-4" Typo="Typo.h3">LOADING DATABASE</MudText>
+    <MudProgressLinear Color="Color.Secondary" Indeterminate="true"/>
 }
 else
 {
-    @if (_pathogens.Count == 0)
-    {
-        <MudText Class="pa-4 ma-4" Typo="Typo.h3">LOADING DATABASE</MudText>
-        <MudProgressLinear Color="Color.Secondary" Indeterminate="true"/>
-    }
-    else
+    @if (isLoaded)
     {
         @foreach (var pathogen in _pathogens)
         {
             <PathogenDetails pathogen="pathogen"/>
             <MudDivider Class="my-6" DividerType="DividerType.Middle" Light="true"/>
         }
-
+    }
+    else
+    {
+        <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database Not Found</MudText>
     }
 }
 
@@ -36,14 +37,40 @@ else
     private Pathogen _editItem = new();
     private string _editRowStyle = "none";
     private string? _newItemName;
- 
+    
+    private bool isLoading { get; set; }
+    private bool isLoaded { get; set; }
+
+    private PathogenDbState _pathogenDb { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
+        
+        _pathogenDb = _dbService.pathogenDb;
+        
         _pathogens = new();
-        await GetTodoItems();
+        await GetItems();
+        
     }
 
-    private async Task GetTodoItems() => 
-        _pathogens = await _http.GetFromJsonAsync<List<Pathogen>>(ServiceEndpoint);
+    private async Task GetItems()
+    {
+        UpdateLoadingState(_pathogenDb);
+        
+        await _pathogenDb.GetAllFromDb();
+        _pathogens = _pathogenDb.loadedPathogens;
+        
+        UpdateLoadingState(_pathogenDb);
+    }
+
+    private void UpdateLoadingState(DbState dbState)
+    {
+        isLoading = dbState.isLoading;
+        isLoaded = dbState.isLoaded;
+        StateHasChanged();
+    }
+       
+        
+        //_pathogens = await _http.GetFromJsonAsync<List<Pathogen>>(ServiceEndpoint);
 
 }
