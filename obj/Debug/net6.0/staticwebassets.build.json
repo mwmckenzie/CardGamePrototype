@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YZh+6eig7fc7IhBzChwWyqvVJnAdOngX7n10FV1HxWg=",
+  "Hash": "I4s7OSBLQ303IOOVLsA1sC098vkRfc3NNIelLthumxA=",
   "Source": "CaptrsCardGamePrototype",
   "BasePath": "/",
   "Mode": "Root",
@@ -7903,6 +7903,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\sample-data\\weather.json"
+    },
+    {
+      "Identity": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\staticwebapp.config.json",
+      "SourceId": "CaptrsCardGamePrototype",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "staticwebapp.config.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\staticwebapp.config.json"
     },
     {
       "Identity": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\svg\\triangle-board.svg",

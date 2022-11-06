@@ -25,6 +25,22 @@ public abstract class DbState : BaseInfoObj
     public int SecondsSinceLastLoaded() => TimeSinceLastLoaded().Seconds;
     public int MinutesSinceLastLoaded() => TimeSinceLastLoaded().Minutes;
 
-    public abstract Task GetAllFromDb();
+    public async Task GetAllFromDb()
+    {
+        isLoading = true;
+        isLoaded = false;
+
+        if (await GetAllDbSpecificItems())
+        {
+            isLoading = false;
+            isLoaded = true;
+            return;
+        }
+        
+        isLoading = false;
+        isLoaded = false;
+    }
+
+    protected abstract Task<bool> GetAllDbSpecificItems();
 }
 

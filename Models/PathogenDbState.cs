@@ -10,19 +10,10 @@ public class PathogenDbState : DbState
     public List<Pathogen> dirtyPathogens { get; set; } = new();
     public List<Pathogen> selectedPathogens { get; set; } = new();
 
-    public override async Task GetAllFromDb()
+    protected override async Task<bool> GetAllDbSpecificItems()
     {
-        isLoading = true;
-        isLoaded = false;
         loadedPathogens = await http.GetFromJsonAsync<List<Pathogen>>(connectionInfo.getAll);
-
-        isLoading = false;
-        isLoaded = true;
-        if (loadedPathogens is null)
-        {
-            isLoaded = false;
-        }
-        
+        return loadedPathogens is not null;
     }
     
         

@@ -14,7 +14,7 @@
 }
 else
 {
-    @if (isLoaded)
+    @if (_pathogens is not null && _pathogens.Count > 0)
     {
         @foreach (var pathogen in _pathogens)
         {
@@ -22,10 +22,15 @@ else
             <MudDivider Class="my-6" DividerType="DividerType.Middle" Light="true"/>
         }
     }
+    else if (_pathogens is not null && _pathogens.Count > 0)
+    {
+        <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database Empty</MudText>
+    }
     else
     {
         <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Database Not Found</MudText>
     }
+    
 }
 
 @code {
@@ -47,18 +52,24 @@ else
     {
         
         _pathogenDb = _dbService.pathogenDb;
+        _pathogens = _pathogenDb.loadedPathogens ?? new();
+
         
-        _pathogens = new();
+        //_pathogens = new();
+        
         await GetItems();
         
     }
 
     private async Task GetItems()
     {
-        UpdateLoadingState(_pathogenDb);
-        
+        //UpdateLoadingState(_pathogenDb);
+        if (!_pathogenDb.isLoaded)
+        {
+            isLoading = true;
+        }
         await _pathogenDb.GetAllFromDb();
-        _pathogens = _pathogenDb.loadedPathogens;
+        _pathogens = _pathogenDb.loadedPathogens ?? new();
         
         UpdateLoadingState(_pathogenDb);
     }
