@@ -11,6 +11,7 @@ public class PathogenDbState : DbState
     public List<Pathogen> selectedPathogens { get; set; } = new();
     
     public Pathogen? pathogenSetForEditing { get; set; }
+    public Pathogen? pathogenSetForDeleting { get; set; }
     
     public PathogenDbState()
     {
@@ -23,6 +24,19 @@ public class PathogenDbState : DbState
     {
         loadedPathogens = await http.GetFromJsonAsync<List<Pathogen>>(connectionString);
         return loadedPathogens is not null;
+    }
+    
+    public override Task CloneAndSetToEditor()
+    {
+        if (pathogenSetForEditing is null)
+        {
+            return Task.CompletedTask;
+        }
+        pathogenSetForEditing = (Pathogen) pathogenSetForEditing.Clone();
+        pathogenSetForEditing.id = Guid.NewGuid().ToString();
+        pathogenSetForEditing.typeName += " (Copy)";
+        
+        return Task.CompletedTask;
     }
 
     public override Task BuildNewAndSetToEditor()
@@ -53,6 +67,20 @@ public class PathogenDbState : DbState
         return postResponse.IsSuccessStatusCode;
     }
 
+    public override async Task<bool> DeleteFromDbAsync()
+    {
+        if (pathogenSetForDeleting?.id is null)
+            return false;
 
-    
+        var editedId = pathogenSetForDeleting.id;
+        var response = await http.DeleteAsync(DeleteByIdConnectionString(editedId));
+
+        if (!response.IsSuccessStatusCode) 
+            return response.IsSuccessStatusCode;
+        
+        loadedPathogens?.Remove(pathogenSetForDeleting);
+        pathogenSetForDeleting = null;
+
+        return response.IsSuccessStatusCode;
+    }
 }

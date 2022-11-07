@@ -48,7 +48,8 @@ public abstract class DbState : BaseInfoObj
     protected abstract Task<bool> GetAllDbSpecificItems();
 
     public abstract Task BuildNewAndSetToEditor();
-    
+    public abstract Task CloneAndSetToEditor();
     public abstract Task<bool> SubmitEditsToDbAsync();
+    public abstract Task<bool> DeleteFromDbAsync();
 }
 

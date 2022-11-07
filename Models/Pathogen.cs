@@ -10,7 +10,12 @@ public class Pathogen: BaseInfoObj {
     
     public List<string>? acuteSymptoms { get; set; }
     public List<string>? reservoirDetails { get; set; }
-    
+
+    public override string ToString()
+    {
+        return typeName ?? nameof(Pathogen);
+    }
+
     public override object Clone()
     {
         return new Pathogen

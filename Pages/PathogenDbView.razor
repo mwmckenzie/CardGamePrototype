@@ -34,7 +34,9 @@ else
                     </TitleContent>
                     <ChildContent>
                         <PathogenDetails pathogen="pathogen" 
-                                         onEditClickCallback="() => SetSelectedPathogenToEditor(pathogen)"/>
+                                         onEditClickCallback="() => SetSelectedPathogenToEditor(pathogen)"
+                                         onCopyClickCallback="() => CopySelectedPathogenToEditor(pathogen)"
+                                         onDeleteClickCallback="() => DeleteAsync(pathogen)"/>
                     </ChildContent>
                 </MudExpansionPanel>
                 @* <MudDivider Class="my-6" DividerType="DividerType.Middle" Light="true"/> *@
@@ -103,13 +105,26 @@ else
     }
     
     private void CopySelectedPathogenToEditor(Pathogen pathogen) {
-        _pathogenDb.pathogenSetForEditing = (Pathogen) pathogen.Clone();
-        AddSnackBarUpdate($"{pathogen} Sent To Pathogen Editor!");
+        //_pathogenDb.pathogenSetForEditing = (Pathogen) pathogen.Clone();
+        _pathogenDb.pathogenSetForEditing = pathogen;
+        _pathogenDb.CloneAndSetToEditor();
+        AddSnackBarUpdate($"{pathogen} Clone Sent To Pathogen Editor!");
+    }
+    
+    private async Task DeleteAsync(Pathogen pathogen) {
+        _pathogenDb.pathogenSetForDeleting = pathogen;
+        AddSnackBarUpdate($"Attempting to Delete {pathogen}", Severity.Info);
+        if (await _pathogenDb.DeleteFromDbAsync())
+        {
+            AddSnackBarUpdate($"{pathogen} Deleted From Database");
+            return;
+        }
+        AddSnackBarUpdate($"Failed to Delete {pathogen}", Severity.Error);
     }
 
-    private void AddSnackBarUpdate(string text) {
+    private void AddSnackBarUpdate(string text, Severity severity = Severity.Success) {
         _snackbar.Clear();
-        _snackbar.Add(text, Severity.Success, config =>
+        _snackbar.Add(text, severity, config =>
         {
             config.RequireInteraction = true;
             config.CloseAfterNavigation = true;

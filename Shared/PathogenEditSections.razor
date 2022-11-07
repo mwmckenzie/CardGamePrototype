@@ -1,16 +1,17 @@
 @using Microsoft.AspNetCore.Components
 @using CaptrsCardGamePrototype.Models
+@using MudBlazor.Services
 <MudPaper Class="pa-4">
     
     <div class="d-flex flex-grow-1 justify-end mb-4">
         <MudButtonGroup Class="" Color="Color.Primary" Variant="Variant.Filled">
-            <MudTooltip Text="Submit Changes or Add To DB">
+            <MudTooltip Text="Submit Changes or Add To Database">
                 <MudButton OnClick="@onSubmitClickCallback">Submit</MudButton>
             </MudTooltip>
-            <MudTooltip Text="Clone a Copy To DB">
+            <MudTooltip Text="Clone a Copy To Database">
                 <MudButton OnClick="@onCloneClickCallback">Clone</MudButton>
             </MudTooltip>
-            <MudTooltip Text="Clear Fields With New Pathogen">
+            <MudTooltip Text="Create New Empty Pathogen">
                 <MudButton OnClick="onClearClickCallback">Clear</MudButton>
             </MudTooltip>
         </MudButtonGroup>
@@ -51,7 +52,8 @@
                       Adornment="Adornment.End"
                       AdornmentColor="Color.Tertiary"
                       AdornmentIcon="@Icons.Material.Filled.Add"
-                      OnAdornmentClick="AddTextToAcuteSymp"/>
+                      OnAdornmentClick="AddTextToAcuteSymp"
+                      OnKeyUp="UpdateTextFromTextBox"/>
 
         @if (acuteSymptomsList is not null)
         {
@@ -64,7 +66,7 @@
                        Adornment="Adornment.End"
                        AdornmentColor="Color.Tertiary"
                        AdornmentIcon="@Icons.Material.Filled.Add"
-                       OnAdornmentClick="AddSelectToAcuteSymp">
+                       OnAdornmentClick="AddSelectToAcuteSymp" >
                 @foreach (var symptom in acuteSymptomsList)
                 {
                     <MudSelectItem Value="@symptom"/>
@@ -139,6 +141,14 @@
     [Parameter]
     public EventCallback<MouseEventArgs> onClearClickCallback { get; set; }
     
+
+    private void UpdateTextFromTextBox(KeyboardEventArgs args)
+    {
+        // if (args.Key != "Enter")
+        //     return;
+        AddTextToAcuteSymp();
+    }
+    
     private void AddTextToAcuteSymp() {
         if (string.IsNullOrWhiteSpace(tempAcuteSymp) || pathogen.acuteSymptoms.Contains(tempAcuteSymp)) {
             return;
@@ -167,5 +177,7 @@
         }
         pathogen.reservoirDetails.Add(tempReservoirSelect);
     }
+    
+    
     
 }

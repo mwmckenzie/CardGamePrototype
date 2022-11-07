@@ -108,9 +108,10 @@
         {
             return;
         }
-        _pathogenDb.pathogenSetForEditing = (Pathogen) _pathogenDb.pathogenSetForEditing.Clone();
-        _pathogenDb.pathogenSetForEditing.id = Guid.NewGuid().ToString();
-        _pathogenDb.pathogenSetForEditing.typeName += " (Copy)";
+        _pathogenDb.CloneAndSetToEditor();
+        // _pathogenDb.pathogenSetForEditing = (Pathogen) _pathogenDb.pathogenSetForEditing.Clone();
+        // _pathogenDb.pathogenSetForEditing.id = Guid.NewGuid().ToString();
+        // _pathogenDb.pathogenSetForEditing.typeName += " (Copy)";
         AddSnackBarUpdate("Pathogen Cloned and Set To Editor");
     }
 
