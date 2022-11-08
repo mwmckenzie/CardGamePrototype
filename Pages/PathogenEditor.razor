@@ -7,24 +7,30 @@
 @inject HttpClient _http
 @inject ISnackbar _snackbar
 
+<PageTitle>CAPTRS Web Prototypes - Pathogen Editor</PageTitle>
+
 <MudText Class="pa-4 ma-4" Typo="Typo.h3" >Pathogen Editor</MudText>
 
-<MudPaper Class="pa-4 ma-4">
-    <MudStack Row="true">
-        <MudText Class="my-4" Typo="Typo.h6" Color="Color.Primary">Reload Pathogen From Local File</MudText>
-        <MudSpacer/>
-        <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="TryLoadPathogenFromLocal">Reload</MudButton>
-    </MudStack>
-</MudPaper>
+@if (_pathogenDb.pathogenSetForEditing is null)
+{
+    <MudPaper Class="pa-4 ma-4">
+        <MudStack Row="true">
+            <MudText Class="my-4" Typo="Typo.h6" Color="Color.Primary">New Pathogen</MudText>
+            <MudSpacer/>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="SetNewToEditor">Create</MudButton>
+        </MudStack>
+    </MudPaper>
+}
 
-<MudPaper Class="pa-4 ma-4">
-    <MudStack Row="true">
-        <MudText Class="my-2" Typo="Typo.h6" Color="Color.Primary">Reload Pathogen From Web API</MudText>
-        <MudSpacer/>
-        <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="TryLoadPathogenFromWeb">Reload</MudButton>
-    </MudStack>
-    <MudTextField @bind-Value="@url" Variant="Variant.Outlined" Label="URL"/>
-</MudPaper>
+
+@* <MudPaper Class="pa-4 ma-4"> *@
+@*     <MudStack Row="true"> *@
+@*         <MudText Class="my-2" Typo="Typo.h6" Color="Color.Primary">Reload Pathogen From Web API</MudText> *@
+@*         <MudSpacer/> *@
+@*         <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="TryLoadPathogenFromWeb">Reload</MudButton> *@
+@*     </MudStack> *@
+@*     <MudTextField @bind-Value="@url" Variant="Variant.Outlined" Label="URL"/> *@
+@* </MudPaper> *@
 
 
 @* @if (!string.IsNullOrWhiteSpace(_cardDataService.apiReponseText)) { *@
@@ -119,6 +125,12 @@
     {
         _pathogenDb.BuildNewAndSetToEditor();
         AddSnackBarUpdate("Pathogen Fields Cleared and New Pathogen Created");
+    }
+    
+    private void SetNewToEditor()
+    {
+        _pathogenDb.BuildNewAndSetToEditor();
+        AddSnackBarUpdate("New Pathogen Created");
     }
     
     private void AddSnackBarUpdate(string text, Severity severity = Severity.Success) {
