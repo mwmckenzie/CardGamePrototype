@@ -16,6 +16,7 @@ public class PathogenDbState : DbState
     public PathogenDbState()
     {
         connectionStringBase = "https://pathogensapi.azurewebsites.net/api/pathogen";
+        connectionStringArchive = "https://pathogensapi.azurewebsites.net/api/archive";
         connectionStringKey = "?code=captrs";
         // "https://pathogensapi.azurewebsites.net/api/pathogen?code=cdtNGBg2z0nHTUzTzEAxHqVuIsCyOnmZEULRaguOPvfYAzFus8dMCQ=="
     }
@@ -52,10 +53,12 @@ public class PathogenDbState : DbState
 
     public override async Task<bool> SubmitEditsToDbAsync()
     {
-        if (pathogenSetForEditing is null)
+        if (pathogenSetForEditing?.id is null)
             return false;
 
         var editedId = pathogenSetForEditing.id;
+        await SubmitEditsToArchiveAsync();
+        
         if (loadedPathogens is not null && loadedPathogens.Any(x => x.id == editedId))
         {
             var putResponse = 
@@ -64,6 +67,24 @@ public class PathogenDbState : DbState
         }
         
         var postResponse = await http.PostAsJsonAsync(connectionString, pathogenSetForEditing);
+        return postResponse.IsSuccessStatusCode;
+    }
+    
+    public override async Task<bool> SubmitEditsToArchiveAsync()
+    {
+        if (pathogenSetForEditing?.id is null)
+            return false;
+
+        var editedId = pathogenSetForEditing.id;
+        var putResponse = 
+            await http.PutAsJsonAsync(PutArchiveByIdConnString(editedId), pathogenSetForEditing);
+
+        if (putResponse.IsSuccessStatusCode)
+        {
+            return true;
+        }
+        
+        var postResponse = await http.PostAsJsonAsync(connectionArchive, pathogenSetForEditing);
         return postResponse.IsSuccessStatusCode;
     }
 

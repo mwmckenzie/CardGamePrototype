@@ -9,9 +9,11 @@ public abstract class DbState : BaseInfoObj
     public bool isLoading { get; set; }
     
     public string connectionStringBase { get; set; }
+    public string connectionStringArchive { get; set; }
     public string connectionStringKey { get; set; }
 
     public string connectionString => $"{connectionStringBase}{connectionStringKey}";
+    public string connectionArchive => $"{connectionStringArchive}{connectionStringKey}";
 
     public DateTime lastLoaded { get; set; }
     
@@ -27,6 +29,11 @@ public abstract class DbState : BaseInfoObj
     protected string DeleteByIdConnectionString(string deleteId)
     {
         return $"{connectionStringBase}/{deleteId}{connectionStringKey}";
+    }
+    
+    protected string PutArchiveByIdConnString(string putId)
+    {
+        return $"{connectionStringArchive}/{putId}{connectionStringKey}";
     }
 
     public async Task GetAllFromDb()
@@ -50,6 +57,7 @@ public abstract class DbState : BaseInfoObj
     public abstract Task BuildNewAndSetToEditor();
     public abstract Task CloneAndSetToEditor();
     public abstract Task<bool> SubmitEditsToDbAsync();
+    public abstract Task<bool> SubmitEditsToArchiveAsync();
     public abstract Task<bool> DeleteFromDbAsync();
 }
 
