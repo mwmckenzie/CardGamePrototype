@@ -150,13 +150,18 @@
     }
     
     private void AddTextToAcuteSymp() {
+        pathogen ??= new();
+        pathogen.acuteSymptoms ??= new();
         if (string.IsNullOrWhiteSpace(tempAcuteSymp) || pathogen.acuteSymptoms.Contains(tempAcuteSymp)) {
             return;
         }
         pathogen.acuteSymptoms.Add(tempAcuteSymp);
         tempAcuteSymp = null;
     }
-    private void AddSelectToAcuteSymp() {
+    private void AddSelectToAcuteSymp()
+    {
+        pathogen ??= new();
+        pathogen.acuteSymptoms ??= new();
         if (string.IsNullOrWhiteSpace(tempAcuteSympSelect) || pathogen.acuteSymptoms.Contains(tempAcuteSympSelect)) {
             return;
         }
@@ -164,6 +169,8 @@
     }
     
     private void AddTextToReservoir() {
+        pathogen ??= new();
+        pathogen.reservoirDetails ??= new();
         if (string.IsNullOrWhiteSpace(tempReservoir) || pathogen.reservoirDetails.Contains(tempReservoir)) {
             return;
         }
@@ -172,6 +179,8 @@
     }
     
     private void AddSelectToReservoir() {
+        pathogen ??= new();
+        pathogen.reservoirDetails ??= new();
         if (string.IsNullOrWhiteSpace(tempReservoirSelect) || pathogen.reservoirDetails.Contains(tempReservoirSelect)) {
             return;
         }
