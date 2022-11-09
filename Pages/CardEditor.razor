@@ -8,92 +8,114 @@
 
 <PageTitle>CAPTRS Web Prototypes - Card Editor</PageTitle>
 
-<MudText Typo="Typo.h3" Class="mt-4 mb-0">Card Editor</MudText>
-
-<MudPaper Class="pa-4 my-4">
-    <MudStack Row="true" AlignItems="AlignItems.Center">
-        <MudText Typo="Typo.h5">Card Position in Collection:</MudText>
-        @if (cardIndex > 0) {
-            <MudChip Color="Color.Primary">@cardIndex</MudChip>
-        }
-        @if (cardIndex < 1) {
-            <MudChip Color="Color.Warning">Not In Collection</MudChip>
-        }
-        
-    </MudStack>
-</MudPaper>
-
-<MudStack Row="true">
-    <MudContainer MaxWidth="MaxWidth.ExtraSmall">
-        <MudCard>
-            <MudCardContent>
-                <MudButton Class="mt-4"
-                           OnClick="@AddCardToDataService"
-                           Color="Color.Primary"
-                           Variant="Variant.Filled">
-                    Add Card To Collection
-                </MudButton>
-                <MudButton Class="mt-4"
-                           OnClick="@ResetCard"
-                           Color="Color.Success"
-                           Variant="Variant.Filled">
-                    New Card
-                </MudButton>
-                <MudDivider Class="my-4"/>
-                <MudTextField Variant="Variant.Outlined"
-                              @bind-Value="@_cardObj.cardType"
-                              For="@(() => _cardObj.cardType)"
-                              Label="Card Type"/>
-                <MudTextField Class="mt-4"
-                              Variant="Variant.Outlined"
-                              @bind-Value="@_cardObj.cardTitle"
-                              For="@(() => _cardObj.cardTitle)"
-                              Label="Card Title"/>
-                <MudDivider Class="my-4"/>
-                <MudButton Class="mb-4"
-                           OnClick="@SubmitTextContent"
-                           Color="Color.Primary"
-                           Variant="Variant.Filled">
-                    New Text Section
-                </MudButton>
-
-                @{ int x = 0; }
-                @foreach (var textContent in _cardObj.textContentSections) {
-                    var y = x;
-                    <MudTextField T="string"
-                                  Label="Text Content"
-                                  Variant="Variant.Outlined"
-                                  @bind-Value="@_cardObj.textContentSections[y]"
-                                  Lines="4"/>
-                    x++;
-                }
-                @if (_cardObj.textContentSections.Count > 0) {
-                    <MudButton Class="mt-4"
-                               OnClick="@RemoveLastTextContent"
-                               Color="Color.Secondary"
-                               Variant="Variant.Filled">
-                        Remove Text Section
-                    </MudButton>
-                }
-
-                <MudDivider Class="my-4"/>
-                <MudSwitch @bind-Checked="@isValid"
-                           Color="Color.Success"
-                           UnCheckedColor="Color.Dark"
-                           Label="Card Enabled"/>
-            </MudCardContent>
-
-        </MudCard>
-    </MudContainer>
+<MudGrid>
     
+    <MudItem xs="12">
+        
+    
+        <MudText Typo="Typo.h3" Class="mt-4 mb-0">Card Editor</MudText>
 
-    @if (isValid) {
-        <CardComponent mapDisplayRequested="@mapOverlay.DisplayMap" 
-                       pathogenViewRequested="@pathogenSideVM.DisplaySideView"
-                       stateToggle="@isValid" cardBase="@_cardObj"/>
-    }
+        <MudPaper Class="pa-4 my-4">
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudText Typo="Typo.h5">Card Position in Collection:</MudText>
+                @if (cardIndex > 0)
+                {
+                    <MudChip Color="Color.Primary">@cardIndex</MudChip>
+                }
+                @if (cardIndex < 1)
+                {
+                    <MudChip Color="Color.Warning">Not In Collection</MudChip>
+                }
 
-</MudStack>
+            </MudStack>
+        </MudPaper>
+        
+    </MudItem>
+
+    @* <MudStack Row="true"> *@
+        
+        <MudItem xs="12" md="6">
+            
+            <MudContainer MaxWidth="MaxWidth.ExtraSmall">
+                <MudCard>
+                    <MudCardContent>
+                        <MudButton Class="mt-4"
+                                   OnClick="@AddCardToDataService"
+                                   Color="Color.Primary"
+                                   Variant="Variant.Filled">
+                            Add Card To Collection
+                        </MudButton>
+                        <MudButton Class="mt-4"
+                                   OnClick="@ResetCard"
+                                   Color="Color.Success"
+                                   Variant="Variant.Filled">
+                            New Card
+                        </MudButton>
+                        <MudDivider Class="my-4"/>
+                        <MudTextField Variant="Variant.Outlined"
+                                      @bind-Value="@_cardObj.cardType"
+                                      For="@(() => _cardObj.cardType)"
+                                      Label="Card Type"/>
+                        <MudTextField Class="mt-4"
+                                      Variant="Variant.Outlined"
+                                      @bind-Value="@_cardObj.cardTitle"
+                                      For="@(() => _cardObj.cardTitle)"
+                                      Label="Card Title"/>
+                        <MudDivider Class="my-4"/>
+                        <MudButton Class="mb-4"
+                                   OnClick="@SubmitTextContent"
+                                   Color="Color.Primary"
+                                   Variant="Variant.Filled">
+                            New Text Section
+                        </MudButton>
+
+                        @{ int x = 0; }
+                        @foreach (var textContent in _cardObj.textContentSections)
+                        {
+                            var y = x;
+                            <MudTextField T="string"
+                                          Label="Text Content"
+                                          Variant="Variant.Outlined"
+                                          @bind-Value="@_cardObj.textContentSections[y]"
+                                          Lines="4"/>
+                            x++;
+                        }
+                        @if (_cardObj.textContentSections.Count > 0)
+                        {
+                            <MudButton Class="mt-4"
+                                       OnClick="@RemoveLastTextContent"
+                                       Color="Color.Secondary"
+                                       Variant="Variant.Filled">
+                                Remove Text Section
+                            </MudButton>
+                        }
+
+                        <MudDivider Class="my-4"/>
+                        <MudSwitch @bind-Checked="@isValid"
+                                   Color="Color.Success"
+                                   UnCheckedColor="Color.Dark"
+                                   Label="Card Enabled"/>
+                    </MudCardContent>
+
+                </MudCard>
+            </MudContainer>
+        </MudItem>
+        
+     <MudItem xs="12" md="6">
+        
+        @if (isValid)
+                {
+                    <CardComponent mapDisplayRequested="@mapOverlay.DisplayMap"
+                                   pathogenViewRequested="@pathogenSideVM.DisplaySideView"
+                                   stateToggle="@isValid" cardBase="@_cardObj"/>
+                }
+        
+    </MudItem>
+        
+
+    @* </MudStack> *@
+
+</MudGrid>
 
 <MapOverlay @bind-mapOverlayVM="@mapOverlay"/>
 <PathogenSideView sideViewVM="pathogenSideVM" pathogen="_cardDataService.pathogen" />
