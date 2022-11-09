@@ -5,7 +5,7 @@
 @if (cardBase != null) {
     
     <MudContainer MaxWidth="MaxWidth.ExtraSmall">
-        <MudCard>
+        <MudCard Style="max-height: 75vh">
             <MudCardHeader>
                 <CardHeaderAvatar>
                     <MudAvatar Color="Color.Secondary">
@@ -23,25 +23,32 @@
                     </MudTooltip>
                 </CardHeaderActions>
             </MudCardHeader>
-            <MudCardContent>
-                <MudPaper Height="400px" Class="pa-2">
-                    <div id="unique_id_scroll_section" class="ma-0 d-flex flex-column gap-2" style="height:380px;overflow: auto;">
-                        @if (cardBase.textContentSections != null) {
-                            foreach (var textSection in cardBase.textContentSections) {
-                                <MudText Class="pa-4" Typo="Typo.body1">
-                                    @if (!cardBase.isSpecialText) {
-                                        @textSection
-                                    }
-                                    @if (cardBase.isSpecialText) {
-                                        @((MarkupString) textSection)
-                                    }
-                                    @* @((MarkupString) textSection) *@
-                                </MudText>
-                            }
+            <MudCardContent >
+                <MudPaper Height="45vh" Class="flex-nowrap gap-4 overflow-auto flex-column pa-1">
+                @* <div id="unique_id_scroll_section" *@
+                @*      class="ma-0 flex-nowrap overflow-auto flex-column gap-2"> *@
+
+                    @if (cardBase.textContentSections != null)
+                    {
+                        foreach (var textSection in cardBase.textContentSections)
+                        {
+                            <MudText Class="pa-4" Typo="Typo.body1" Style="min-height: 0">
+                                @if (!cardBase.isSpecialText)
+                                {
+                                    @textSection
+                                }
+                                @if (cardBase.isSpecialText)
+                                {
+                                    @((MarkupString)textSection)
+                                }
+                                @* @((MarkupString) textSection) *@
+                            </MudText>
                         }
-                    </div>
+                    }
+                @* </div> *@
                 </MudPaper>
             </MudCardContent>
+            
             <MudCardActions>
                 <MudTooltip Text="Show Pathogen Details">
                     <MudIconButton Icon="@Icons.Material.Filled.BugReport" Color="Color.Default" OnClick="OnDisplayPathogenViewClicked"/>
