@@ -11,13 +11,12 @@
 <MudGrid>
     
     <MudItem xs="12">
-        
-    
         <MudText Typo="Typo.h3" Class="mt-4 mb-0">Card Editor</MudText>
 
         <MudPaper Class="pa-4 my-4">
             <MudStack Row="true" AlignItems="AlignItems.Center">
                 <MudText Typo="Typo.h5">Card Position in Collection:</MudText>
+                
                 @if (cardIndex > 0)
                 {
                     <MudChip Color="Color.Primary">@cardIndex</MudChip>
@@ -26,10 +25,10 @@
                 {
                     <MudChip Color="Color.Warning">Not In Collection</MudChip>
                 }
-
+                
             </MudStack>
         </MudPaper>
-        
+
     </MudItem>
 
     @* <MudStack Row="true"> *@
