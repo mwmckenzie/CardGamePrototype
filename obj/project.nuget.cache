@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oucNTN7KOC4MLz29JG80A4QQYAiQQhSRkeq2jOEMuQVkiBxMtoOmJRRjAVKFdY6fdE/EfhNSZFNUCXVyEv5OJg==",
+  "dgSpecHash": "Fmtkk+4kaI3hpaojAha+UWkHMOp9oRpfJnPW1uABeeKAB0lv6tfKUxUUso1UvXu/ljVi+690zAw7r7h77uJHdQ==",
   "success": true,
   "projectFilePath": "F:\\CSharp\\CaptrsCardGamePrototype\\CaptrsCardGamePrototype.csproj",
   "expectedPackageFiles": [
@@ -153,7 +153,10 @@
     "C:\\Users\\Matt\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Matt\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Matt\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Matt\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.10\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.10.nupkg.sha512"
+    "C:\\Users\\Matt\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.11\\microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Matt\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.11\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.11.nupkg.sha512",
+    "C:\\Users\\Matt\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.11\\microsoft.windowsdesktop.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Matt\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.11\\microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512"
   ],
   "logs": []
 }

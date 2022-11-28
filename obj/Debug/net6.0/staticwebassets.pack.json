@@ -1,0 +1,141 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\obj\\Debug\\net6.0\\build-gz\\Sv48P9U+.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\Influenza_A_H9N2.json",
+      "PackagePath": "staticwebassets\\data\\Influenza_A_H9N2.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\Influenza_A_H9N2_01.json",
+      "PackagePath": "staticwebassets\\data\\Influenza_A_H9N2_01.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\Influenza_A_H9N2_02.json",
+      "PackagePath": "staticwebassets\\data\\Influenza_A_H9N2_02.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\SeirModelParams_PSA Game_Test01_2022-09-19-1836.json",
+      "PackagePath": "staticwebassets\\data\\SeirModelParams_PSA Game_Test01_2022-09-19-1836.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\SeirModelParams_PsaGame_01.json",
+      "PackagePath": "staticwebassets\\data\\SeirModelParams_PsaGame_01.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\SeirModelParams_PsaGame_02.json",
+      "PackagePath": "staticwebassets\\data\\SeirModelParams_PsaGame_02.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\SquirrelPox.json",
+      "PackagePath": "staticwebassets\\data\\SquirrelPox.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\acuteSymptomsList.json",
+      "PackagePath": "staticwebassets\\data\\acuteSymptomsList.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\lookups\\reportCard01_01.json",
+      "PackagePath": "staticwebassets\\data\\lookups\\reportCard01_01.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\lookups\\reportCard01_02.json",
+      "PackagePath": "staticwebassets\\data\\lookups\\reportCard01_02.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\lookups\\reportCard01_03.json",
+      "PackagePath": "staticwebassets\\data\\lookups\\reportCard01_03.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\lookups\\reportCard01_04.json",
+      "PackagePath": "staticwebassets\\data\\lookups\\reportCard01_04.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\data\\testTextInput01.json",
+      "PackagePath": "staticwebassets\\data\\testTextInput01.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\favicon_old.ico",
+      "PackagePath": "staticwebassets\\favicon_old.ico"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\img\\map-main.png",
+      "PackagePath": "staticwebassets\\img\\map-main.png"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\img\\triangle-element.png",
+      "PackagePath": "staticwebassets\\img\\triangle-element.png"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\map-main.png",
+      "PackagePath": "staticwebassets\\map-main.png"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\captrs-logo-icon.ico",
+      "PackagePath": "staticwebassets\\sample-data\\captrs-logo-icon.ico"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\captrs-logo-icon.png",
+      "PackagePath": "staticwebassets\\sample-data\\captrs-logo-icon.png"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\captrs-logo-icon.svg",
+      "PackagePath": "staticwebassets\\sample-data\\captrs-logo-icon.svg"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\captrs-logo.png",
+      "PackagePath": "staticwebassets\\sample-data\\captrs-logo.png"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\favicon.svg",
+      "PackagePath": "staticwebassets\\sample-data\\favicon.svg"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\staticwebapp.config.json",
+      "PackagePath": "staticwebassets\\staticwebapp.config.json"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\svg\\triangle-board.svg",
+      "PackagePath": "staticwebassets\\svg\\triangle-board.svg"
+    },
+    {
+      "Id": "F:\\CSharp\\CaptrsCardGamePrototype\\wwwroot\\svg\\triangle-element.svg",
+      "PackagePath": "staticwebassets\\svg\\triangle-element.svg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.CaptrsCardGamePrototype.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.CaptrsCardGamePrototype.props",
+      "PackagePath": "build\\CaptrsCardGamePrototype.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.CaptrsCardGamePrototype.props",
+      "PackagePath": "buildMultiTargeting\\CaptrsCardGamePrototype.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.CaptrsCardGamePrototype.props",
+      "PackagePath": "buildTransitive\\CaptrsCardGamePrototype.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
