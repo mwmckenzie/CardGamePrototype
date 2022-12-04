@@ -4,17 +4,53 @@
 @*     mozallowfullscreen="true" src="https://play.unity.com/webgl/582f5fee-ec47-4bd0-9f9e-dc548cd8833c?screenshot=false&embedType=embed"  width="810" *@
 @*     height="640" onmousewheel="" webkitallowfullscreen="true"></iframe> *@
 
-<MudItem Style="height: 90vh">
-    <iframe id="webgl_iframe" 
-                    width="810" 
-                    height="100%"
-                    position: absolute
-                    src="https://play.unity.com/webgl/582f5fee-ec47-4bd0-9f9e-dc548cd8833c?screenshot=false&embedType=embed"
-                    onmousewheel=""
-                    webkitallowfullscreen="true"
-                    allow="accelerometer; autoplay; fullscreen; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    scrolling="yes"></iframe>
+<head>
+    <title>Title of the document</title>
+<style>
+      #wrap {
+        width: 1600px;
+        height: 900px;
+        padding: 0;
+        overflow: hidden;
+      }
+      #scaled-frame {
+        width: 1600px;
+        height: 900px;
+        border: 0px;
+      }
+      #scaled-frame {
+        zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.75);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(0.75);
+        -webkit-transform-origin: 0 0;
+      }
+    </style>
+</head>
+
+<MudItem>
+  
+  <div id="wrap">
+    <iframe id="scaled-frame" src="https://mwmckenzie.github.io/markov-sim-explorer/"
+            webkitallowfullscreen="true"
+            allow="accelerometer; autoplay; fullscreen; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+      </div>
+
+  @* <iframe id="webgl_iframe" *@
+  @*         width="600px" *@
+  @*         height="400px" *@
+  @*         position: absolute *@
+  @*         src="https://mwmckenzie.github.io/markov-sim-explorer/" *@
+  @*         onmousewheel="" *@
+  @*         webkitallowfullscreen="true" *@
+  @*         allow="accelerometer; autoplay; fullscreen; encrypted-media; gyroscope; picture-in-picture" *@
+  @*         allowfullscreen *@
+  @*         scrolling="yes"></iframe> *@
+
+
 </MudItem>
 
 
