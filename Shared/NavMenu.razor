@@ -1,28 +1,40 @@
-﻿
+﻿@using System.Drawing
+@using Color = MudBlazor.Color
+
 <MudPaper Height="100%" Width="250px" Class="d-flex flex-column flex-grow-1 align-content-space-between py-3" 
           Elevation="0">
-<MudNavMenu>
-    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="CardEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.EditNote">
-        Card Editor
-    </MudNavLink>
-    <MudNavLink Href="CollectionEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LibraryAdd">
-        Collection Editor
-    </MudNavLink>
-    <MudNavLink Href="SeirParamsView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ViewList">
-        Model Parameters
-    </MudNavLink>
-    <MudNavLink Href="PathogenDbView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LibraryBooks">
-        Pathogen Database
-    </MudNavLink>
-    <MudNavLink Href="PathogenEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Edit">
-        Pathogen Editor
-    </MudNavLink>
-    <MudNavLink Href="SimulationExplorerView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Computer">
-            SEIR Simulation
+    <MudNavMenu>
+        <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+        <MudNavLink Href="CardEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.EditNote">
+            Card Editor
         </MudNavLink>
-    @* <MudNavLink Href="ApiTestPage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.NetworkCheck">API Test</MudNavLink> *@
-</MudNavMenu>
+        <MudNavLink Href="CollectionEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LibraryAdd">
+            Collection Editor
+        </MudNavLink>
+        <MudNavLink Href="SeirParamsView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ViewList">
+            Model Parameters
+        </MudNavLink>
+        <MudNavLink Href="PathogenDbView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LibraryBooks">
+            Pathogen Database
+        </MudNavLink>
+        <MudNavLink Href="PathogenEditor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Edit">
+            Pathogen Editor
+        </MudNavLink>
+        <MudNavGroup Title="Simulations" Expanded="true" Icon="@Icons.Material.Filled.Computer">
+            <MudNavLink Href="SimulationExplorerView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.BubbleChart">
+                Complex SEIR
+            </MudNavLink>
+            <MudNavLink Href="SimMultiModelExplorerView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.BubbleChart">
+                Connected SEIR
+            </MudNavLink>
+        </MudNavGroup>
+        <MudNavLink Href="PsaPlayerBoardView" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Computer">
+            Player Board
+        </MudNavLink>
+        
+        @* <MudNavLink Href="ApiTestPage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.NetworkCheck">API Test</MudNavLink> *@
+    </MudNavMenu>
+    
 <MudElement Class="pa-4 mt-auto">
     <MudSwitch @bind-Checked="@isDarkMode" Color="Color.Primary" 
                T="bool" Label="Toggle Light/Dark Mode"

@@ -214,13 +214,13 @@
       "mscorlib.dll": "sha256-cx\/3nJhFns3tZhQNQOyiRyKJESKxOjLVufzWnri6KSA=",
       "netstandard.dll": "sha256-yWufW5W4SSfjocBcWTEDqnFwTd\/VYtLMc2Y9mPmlggc=",
       "System.Private.CoreLib.dll": "sha256-H009wzPwRoDZlwvpN4KLCsUwN7Y1AmjKB3PIEHA7ObQ=",
-      "CaptrsCardGamePrototype.dll": "sha256-uNggzZEK+mhmcIH8wGr8XP2EFNNz8kucbUMNxpXCN58="
+      "CaptrsCardGamePrototype.dll": "sha256-Y9SiqcXDC32678UswlJI309W6g\/UhT0G\/0ULmP0cSEo="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "CaptrsCardGamePrototype.pdb": "sha256-gcA2ayDelrYmn2JLOJp9fWQ2xzc5z0kcy48utXWjlTo="
+      "CaptrsCardGamePrototype.pdb": "sha256-imbmVPms3hKGpzxBSKXoNKUug5+51bEpFw7rNtIYxcY="
     },
     "runtime": {
       "dotnet.6.0.11.7vx6xbrlic.js": "sha256-F30V+6jU3jwJYFZoLuwMAqzTiOXu6q7zGgOdjYBofDI=",
